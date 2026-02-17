@@ -2,67 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Voice Chatbot for Grief Healing</title>
+  <title>Choose a View • Grief Healing Voice Bot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
+    body{
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      line-height: 1.6;
-      padding: 0 20px;
+      margin:0; padding:0;
+      background:#fafafa; color:#222;
     }
-    h1, h2 {
-      color: #333;
+    .wrap{
+      max-width:900px;
+      margin:40px auto;
+      padding:0 20px;
     }
-    .section {
-      margin-bottom: 40px;
+    .card{
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 1px 2px rgba(0,0,0,0.04);
     }
+    h1{ margin:0 0 8px; }
+    p{ color:#555; }
+    .grid{
+      display:grid;
+      gap:12px;
+      grid-template-columns:1fr;
+      margin-top:16px;
+    }
+    @media (min-width: 720px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+    a.choice{
+      display:block;
+      text-decoration:none;
+      border:1px solid #dcdcdc;
+      background:#f4f4f4;
+      padding:16px;
+      border-radius:14px;
+      color:#222;
+    }
+    a.choice:hover{ background:#efefef; }
+    .pill{
+      display:inline-block;
+      margin-top:10px;
+      font-size:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid #ddd;
+      background:#fff;
+      color:#444;
+    }
+    .small{ font-size:13px; color:#666; margin-top:14px; }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="card">
+      <h1>AI Voice Chatbot for Grief Healing</h1>
+      <p><strong>Sponsor:</strong> Dr. Young</p>
+      <p>
+        This site has two versions: one for adults/caregivers and one designed for kids.
+        Choose the version you want to view.
+      </p>
 
-  <h1>AI Voice Chatbot for Grief Healing</h1>
-  <p><strong>Sponsor:</strong> Dr. Young</p>
+      <div class="grid">
+        <a class="choice" href="adult.html">
+          <strong>Adult / Parent / Caregiver</strong><br/>
+          Research overview, ethics, consent, and how this supports children.
+          <div class="pill">Detailed • Safety-focused</div>
+        </a>
 
-  <div class="section">
-    <h2>The Problem</h2>
-    <p>
-      Children facing the loss of a parent due to illness or hospice care often
-      experience anticipatory grief with limited emotional support tools.
-      Traditional grief counseling is expensive, inaccessible, or not designed
-      for children.
-    </p>
+        <a class="choice" href="kids.html">
+          <strong>Kids</strong><br/>
+          Simple language, gentle activities, and supportive prompts.
+          <div class="pill">Simple • Calm • Friendly</div>
+        </a>
+      </div>
+
+      <p class="small">
+        Note: This is a class project landing page and does not provide medical advice.
+      </p>
+    </div>
   </div>
-
-  <div class="section">
-    <h2>The Idea</h2>
-    <p>
-      We propose an AI voice chatbot designed specifically for grief healing.
-      The chatbot uses conversational AI and voice interaction to help children
-      process emotions, share memories, and maintain a comforting connection
-      with loved ones who are passing away or have passed.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>How It Helps Children</h2>
-    <ul>
-      <li>Supports grief before and after loss</li>
-      <li>Encourages sharing memories and stories</li>
-      <li>Provides emotional comfort through voice</li>
-      <li>Accessible and affordable support</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Ethical Focus</h2>
-    <p>
-      The system prioritizes consent, parental involvement, and emotional safety.
-      The AI is designed as a supportive tool, not a replacement for human care
-      or therapy.
-    </p>
-  </div>
-
 </body>
 </html>
