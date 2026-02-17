@@ -2,88 +2,447 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Choose a View • Grief Healing Voice Bot</title>
+  <title>Voice for Healing • AI Grief Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    body{
-      font-family: Arial, sans-serif;
-      margin:0; padding:0;
-      background:#fafafa; color:#222;
+    :root {
+      --max: 980px;
+      --text: #232323;
+      --muted: #5a5a5a;
+      --card: rgba(255,255,255,0.78);
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 18px 50px rgba(0,0,0,0.10);
     }
-    .wrap{
-      max-width:900px;
-      margin:40px auto;
-      padding:0 20px;
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
+                  radial-gradient(900px 700px at 80% 0%, #ffe9f4 0%, transparent 55%),
+                  linear-gradient(135deg, #f8fbff, #fff4f9);
+      overflow-x: hidden;
     }
-    .card{
-      background:#fff;
-      border:1px solid #e6e6e6;
-      border-radius:16px;
-      padding:20px;
-      box-shadow:0 1px 2px rgba(0,0,0,0.04);
+
+    /* Fade-in on load */
+    .page {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 700ms ease forwards;
     }
-    h1{ margin:0 0 8px; }
-    p{ color:#555; }
-    .grid{
-      display:grid;
-      gap:12px;
-      grid-template-columns:1fr;
-      margin-top:16px;
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
-    @media (min-width: 720px){
-      .grid{ grid-template-columns: 1fr 1fr; }
+
+    /* Floating background blobs */
+    .blob {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.55;
+      z-index: -1;
+      animation: floaty 14s ease-in-out infinite;
+      pointer-events: none;
     }
-    a.choice{
-      display:block;
-      text-decoration:none;
-      border:1px solid #dcdcdc;
-      background:#f4f4f4;
-      padding:16px;
-      border-radius:14px;
-      color:#222;
+    .blob.one {
+      background: radial-gradient(circle at 30% 30%, #7aa6ff, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #b6ccff, transparent 55%);
+      top: -120px;
+      left: -140px;
+      animation-duration: 16s;
     }
-    a.choice:hover{ background:#efefef; }
-    .pill{
-      display:inline-block;
-      margin-top:10px;
-      font-size:12px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid #ddd;
-      background:#fff;
-      color:#444;
+    .blob.two {
+      background: radial-gradient(circle at 30% 30%, #ff84c8, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
+      top: 80px;
+      right: -160px;
+      animation-duration: 18s;
     }
-    .small{ font-size:13px; color:#666; margin-top:14px; }
+    .blob.three {
+      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
+      bottom: -180px;
+      left: 20%;
+      animation-duration: 20s;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(25px, -20px) scale(1.05); }
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 28px 0 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .badge {
+      font-size: 12px;
+      color: #333;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.7);
+      white-space: nowrap;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 0 26px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .ctaRow {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .primary, .secondary {
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.70);
+      color: #222;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .primary:hover, .secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.86);
+    }
+
+    /* Sections */
+    .section {
+      margin: 22px 0;
+      padding: 22px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .section p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Feature row */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (min-width: 760px) {
+      .features { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .feature {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.72);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.10);
+    }
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.85);
+    }
+    .feature h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .feature p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* Testimonial */
+    .quote {
+      display: grid;
+      gap: 10px;
+    }
+    .quoteBox {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.72);
+    }
+    .quoteMark {
+      font-size: 26px;
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+    .quoteText {
+      margin: 0;
+      color: #3a3a3a;
+      line-height: 1.7;
+    }
+    .quoteMeta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Version cards */
+    .versions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (min-width: 760px) {
+      .versions { grid-template-columns: 1fr 1fr; }
+    }
+
+    .versionCard {
+      padding: 22px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 168px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .versionCard:hover {
+      transform: translateY(-7px);
+    }
+
+    .adultCard {
+      background: linear-gradient(135deg, #4567f3, #7a95ff);
+      box-shadow: 0 18px 55px rgba(69,103,243,0.30);
+    }
+    .kidsCard {
+      background: linear-gradient(135deg, #ff69b7, #ffb0e6);
+      box-shadow: 0 18px 55px rgba(255,105,183,0.30);
+    }
+
+    .versionCard h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: 0.2px;
+    }
+    .versionCard p {
+      margin: 0;
+      opacity: 0.95;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    .chip {
+      align-self: flex-start;
+      margin-top: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.35);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0 40px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .disclaimer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>AI Voice Chatbot for Grief Healing</h1>
-      <p><strong>Sponsor:</strong> Dr. Young</p>
-      <p>
-        This site has two versions: one for adults/caregivers and one designed for kids.
-        Choose the version you want to view.
-      </p>
+  <!-- Floating gradient shapes -->
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
 
-      <div class="grid">
-        <a class="choice" href="adult.html">
-          <strong>Adult / Parent / Caregiver</strong><br/>
-          Research overview, ethics, consent, and how this supports children.
-          <div class="pill">Detailed • Safety-focused</div>
-        </a>
+  <div class="page">
 
-        <a class="choice" href="kids.html">
-          <strong>Kids</strong><br/>
-          Simple language, gentle activities, and supportive prompts.
-          <div class="pill">Simple • Calm • Friendly</div>
-        </a>
+    <header class="wrap">
+      <div class="topbar">
+        <div class="brand">Voice for Healing</div>
+        <div class="badge">Sponsor: Dr. Young • Class Project</div>
       </div>
+    </header>
 
-      <p class="small">
-        Note: This is a class project landing page and does not provide medical advice.
-      </p>
-    </div>
+    <main class="wrap">
+
+      <!-- HERO -->
+      <section class="hero">
+        <h1>A voice that helps<br/>hold on to memories.</h1>
+        <p class="subtitle">
+          We’re exploring an <strong>AI voice chatbot for grief healing</strong> designed to support children
+          experiencing grief — before a loved one passes (anticipatory grief) and after loss.
+          The goal is gentle, age-appropriate support through conversation, memory sharing, and calming prompts.
+        </p>
+
+        <div class="ctaRow">
+          <a class="primary" href="#choose">Choose a version</a>
+          <a class="secondary" href="#why">Why this matters</a>
+        </div>
+      </section>
+
+      <!-- WHY THIS MATTERS -->
+      <section id="why" class="section">
+        <h2>Why this matters</h2>
+        <p>
+          Children coping with a parent’s serious illness or hospice care often experience big emotions that are hard
+          to name. Support isn’t always accessible or child-centered, and families may struggle to start conversations.
+          A voice-based companion can offer structured prompts for reflection and memory sharing — while encouraging
+          connection with trusted caregivers.
+        </p>
+
+        <!-- FEATURE ROW -->
+        <div class="features">
+          <div class="feature">
+            <div class="icon">💛</div>
+            <h3>Gentle conversation</h3>
+            <p>Kid-friendly questions that help name feelings and reduce isolation.</p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">📖</div>
+            <h3>Memory sharing</h3>
+            <p>Prompts to collect favorite stories and meaningful moments with loved ones.</p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">🌿</div>
+            <h3>Calming support</h3>
+            <p>Simple grounding exercises and reflective check-ins for difficult days.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="section">
+        <h2>What someone might say</h2>
+        <div class="quote">
+          <div class="quoteBox">
+            <div class="quoteMark">“</div>
+            <p class="quoteText">
+              I didn’t always know what to say, but the gentle questions helped my child talk about memories
+              and feelings without pressure. It gave us a starting point for conversations we were avoiding.
+            </p>
+            <div class="quoteMeta">— Mock quote from a caregiver (for concept demonstration)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHOOSE VERSION -->
+      <section id="choose" class="section">
+        <h2>Choose your version</h2>
+        <p>
+          The adult and kids experiences are intentionally different. Select the version you want to view.
+        </p>
+
+        <div class="versions">
+          <a class="versionCard adultCard" href="adult.html">
+            <div>
+              <h3>Adult / Caregiver View</h3>
+              <p>
+                Research overview, ethics, consent, and safety design for a grief-focused AI voice chatbot.
+              </p>
+            </div>
+            <div class="chip">Safety • Consent • Overview</div>
+          </a>
+
+          <a class="versionCard kidsCard" href="kids.html">
+            <div>
+              <h3>Kids View</h3>
+              <p>
+                A softer, kid-friendly page with simple explanations, calming prompts, and memory activities.
+              </p>
+            </div>
+            <div class="chip">Simple • Friendly • Supportive</div>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="disclaimer">
+          This is an academic concept landing page and does not provide medical or therapeutic services.
+          If someone feels unsafe or in crisis, contact local emergency services or a trusted professional.
+        </div>
+      </footer>
+
+    </main>
   </div>
 </body>
 </html>
