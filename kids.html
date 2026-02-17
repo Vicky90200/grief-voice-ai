@@ -2,132 +2,293 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kids View • Grief Helper</title>
+  <title>Kids • Voice for Healing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
+    :root{
+      --max: 920px;
+      --text: #242424;
+      --muted: #5a5a5a;
+      --card: rgba(255,255,255,0.82);
+      --border: rgba(0,0,0,0.08);
+    }
+    *{ box-sizing:border-box; }
+
     body{
-      font-family: "Trebuchet MS", Arial, sans-serif;
       margin:0;
-      background:#fff7fb;
-      color:#2b2b2b;
+      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 650px at 15% 10%, #fff0f7 0%, transparent 55%),
+        radial-gradient(900px 650px at 85% 0%, #e9f4ff 0%, transparent 55%),
+        linear-gradient(135deg, #fff7fb, #ffffff);
+      overflow-x:hidden;
     }
-    header{
-      background:#ffe3f1;
-      padding:18px 16px;
-      border-bottom:2px solid #ffd0e7;
+
+    /* Floating blobs */
+    .blob{
+      position: fixed;
+      width: 420px; height: 420px;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.55;
+      z-index: -1;
+      animation: floaty 16s ease-in-out infinite;
+      pointer-events:none;
     }
+    .blob.one{
+      background: radial-gradient(circle at 30% 30%, #ff7bbd, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
+      top:-140px; right:-170px;
+      animation-duration: 18s;
+    }
+    .blob.two{
+      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
+      bottom:-190px; left:-170px;
+      animation-duration: 20s;
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(-18px,-22px) scale(1.05); }
+    }
+
+    /* Fade-in */
+    .page{
+      opacity:0;
+      transform: translateY(10px);
+      animation: fadeUp 700ms ease forwards;
+    }
+    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0);} }
+
     .wrap{
-      max-width:900px;
-      margin:0 auto;
-      padding:0 18px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px;
     }
-    h1{ margin:0 0 6px; font-size:26px; }
-    .sub{ margin:0; color:#555; }
+
+    header{ padding: 24px 0 0; }
+
+    .topbar{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.60);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .brand{ font-weight: 900; letter-spacing: 0.2px; }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.75);
+      color:#333;
+      white-space: nowrap;
+    }
+
     nav a{
       text-decoration:none;
       display:inline-block;
-      margin-right:10px;
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:12px;
-      background:#ffffff;
-      border:1px solid #ffd0e7;
+      margin-left:8px;
+      padding:8px 10px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.75);
       color:#222;
-      font-weight:bold;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    nav a:hover{ background:#fff0f8; }
+    nav a:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.90);
+    }
+
+    .hero{
+      padding: 36px 0 8px;
+      text-align:center;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size: 38px;
+      line-height: 1.15;
+    }
+    .subtitle{
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 18px 0 34px;
+    }
+    @media (min-width: 780px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
     .card{
-      background:#ffffff;
-      border:2px solid #ffd0e7;
-      border-radius:18px;
-      padding:16px;
-      margin:16px 0;
-      box-shadow:0 1px 2px rgba(0,0,0,0.04);
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
     }
-    .big{ font-size:18px; }
-    .badge{
+    .card h2{
+      margin:0 0 8px;
+      font-size: 20px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .big{ font-size: 17px; color:#444; }
+
+    ul{ margin: 10px 0 0 20px; color: #555; line-height: 1.7; font-size: 16px; }
+
+    .chip{
       display:inline-block;
-      background:#fff0f8;
-      border:1px solid #ffd0e7;
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:12px;
-      font-weight:bold;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 800;
+      color:#333;
     }
-    ul{ margin:10px 0 0 20px; }
-    .note{ color:#555; }
-    .prompt{
-      background:#f0fff7;
-      border:2px dashed #8ee6b9;
-      border-radius:16px;
-      padding:14px;
-      margin-top:10px;
+
+    .activity{
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 2px dashed rgba(255,105,183,0.55);
+      background: rgba(255,255,255,0.75);
+      color: #444;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .softWarn{
+      border-left: 4px solid rgba(255,105,183,0.9);
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid var(--border);
+      margin-top: 12px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    footer{
+      padding: 26px 0 40px;
+      text-align:center;
+      color:#777;
+      font-size: 13px;
+    }
+    .disclaimer{
+      margin: 0 auto;
+      max-width: 860px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.60);
+      backdrop-filter: blur(10px);
     }
   </style>
 </head>
+
 <body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
 
-<header>
-  <div class="wrap">
-    <h1>Hi 💛 I’m a Grief Helper</h1>
-    <p class="sub">A gentle voice chatbot idea for kids</p>
-    <nav>
-      <a href="index.html">Choose View</a>
-      <a href="adult.html">Adult Version</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <div class="wrap">
-
-    <div class="card">
-      <span class="badge">What is this?</span>
-      <p class="big">
-        Sometimes someone we love gets very sick or might die. That can bring big feelings.
-        This page is about a <strong>voice helper</strong> that can help you talk about feelings and remember happy moments.
-      </p>
-      <p class="note">
-        This is a school project idea. It’s not a doctor and it’s not a real person.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="badge">Feelings are okay</span>
-      <ul>
-        <li>Sad</li>
-        <li>Mad</li>
-        <li>Worried</li>
-        <li>Confused</li>
-        <li>Okay (sometimes!)</li>
-      </ul>
-      <div class="prompt">
-        <strong>Try this:</strong> Put your hand on your chest and take 3 slow breaths.
-        In… out… in… out… in… out…
+  <div class="page">
+    <header class="wrap">
+      <div class="topbar">
+        <div class="brand">Voice for Healing</div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="badge">Kids View</div>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="adult.html">Adult Version</a>
+          </nav>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <span class="badge">Memory time</span>
-      <p class="big">You can share a favorite story or memory.</p>
-      <ul>
-        <li>“My favorite thing we did together was…”</li>
-        <li>“One thing I want them to know is…”</li>
-        <li>“A funny moment I remember is…”</li>
-      </ul>
-    </div>
+      <section class="hero">
+        <h1>Hi 💛 You’re not alone</h1>
+        <p class="subtitle">
+          Sometimes someone we love gets very sick or dies. That can bring big feelings.
+          This page shares a gentle idea: an <strong>AI voice helper</strong> that asks kind questions and helps you remember.
+        </p>
+      </section>
+    </header>
 
-    <div class="card">
-      <span class="badge">Important</span>
-      <ul>
-        <li>This is an <strong>AI helper</strong>, not a real person.</li>
-        <li>If you feel scared or unsafe, talk to a trusted grown-up right away.</li>
-        <li>You never have to share anything you don’t want to.</li>
-      </ul>
-    </div>
+    <main class="wrap">
+      <div class="grid">
 
+        <div class="card">
+          <h2>Big feelings are normal</h2>
+          <p class="big">You might feel:</p>
+          <ul>
+            <li>Sad</li>
+            <li>Mad</li>
+            <li>Worried</li>
+            <li>Confused</li>
+            <li>Okay (sometimes!)</li>
+          </ul>
+          <span class="chip">All feelings are okay</span>
+        </div>
+
+        <div class="card">
+          <h2>Try a calm moment 🌿</h2>
+          <p class="big">Let’s do 3 slow breaths together.</p>
+          <div class="activity">
+            <strong>Step 1:</strong> Put your hand on your chest.<br/>
+            <strong>Step 2:</strong> Breathe in… 1… 2… 3…<br/>
+            <strong>Step 3:</strong> Breathe out… 1… 2… 3…<br/>
+            <strong>Repeat:</strong> 3 times.
+          </div>
+          <span class="chip">Breathing helps your body</span>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <h2>Memory time 📖</h2>
+        <p class="big">If you want, you can share a story or memory like:</p>
+        <ul>
+          <li>“My favorite thing we did was…”</li>
+          <li>“I remember when we laughed about…”</li>
+          <li>“One thing I want to say is…”</li>
+        </ul>
+        <div class="softWarn">
+          Important: This is an <strong>AI helper</strong> (a computer). It is not the real person.
+          If you feel scared or unsafe, talk to a trusted grown-up right away.
+        </div>
+      </div>
+
+      <footer>
+        <div class="disclaimer">
+          This is a school project concept and does not give medical advice.
+          If you need help, talk to a trusted adult or a professional.
+        </div>
+      </footer>
+    </main>
   </div>
-</main>
-
 </body>
 </html>

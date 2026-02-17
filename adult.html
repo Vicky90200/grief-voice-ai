@@ -2,118 +2,289 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Adult View • AI Voice Chatbot for Grief Healing</title>
+  <title>Adult / Caregiver • Voice for Healing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    body{ font-family: Arial, sans-serif; margin:0; background:#ffffff; color:#222; }
-    header{ border-bottom:1px solid #e6e6e6; padding:18px 20px; background:#f8f8ff; }
-    .wrap{ max-width:980px; margin:0 auto; padding:0 20px; }
-    main{ padding:28px 0; }
-    h1{ margin:0 0 6px; }
-    .sub{ margin:0; color:#555; }
-    .card{
-      border:1px solid #e6e6e6;
-      border-radius:14px;
-      padding:18px;
-      margin:16px 0;
-      background:#fff;
+    :root{
+      --max: 980px;
+      --text: #232323;
+      --muted: #5a5a5a;
+      --card: rgba(255,255,255,0.78);
+      --border: rgba(0,0,0,0.08);
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
+        radial-gradient(900px 700px at 80% 0%, #e9efff 0%, transparent 55%),
+        linear-gradient(135deg, #f8fbff, #ffffff);
+      overflow-x:hidden;
+    }
+
+    /* Floating blobs */
+    .blob{
+      position: fixed;
+      width: 420px; height: 420px;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.55;
+      z-index: -1;
+      animation: floaty 16s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .blob.one{
+      background: radial-gradient(circle at 30% 30%, #5f86ff, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #c7d6ff, transparent 55%);
+      top:-140px; left:-150px;
+      animation-duration: 18s;
+    }
+    .blob.two{
+      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
+      bottom:-190px; right:-190px;
+      animation-duration: 20s;
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(25px,-20px) scale(1.05); }
+    }
+
+    /* Fade-in on load */
+    .page{
+      opacity:0;
+      transform: translateY(10px);
+      animation: fadeUp 700ms ease forwards;
+    }
+    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0);} }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header{
+      padding: 28px 0 0;
+    }
+    .topbar{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .brand{ font-weight: 800; letter-spacing:0.2px; }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.7);
+      color:#333;
+      white-space: nowrap;
     }
     nav a{
       text-decoration:none;
       display:inline-block;
-      margin-right:10px;
+      margin-left:8px;
       padding:8px 10px;
-      border:1px solid #dcdcdc;
-      border-radius:10px;
-      background:#f4f4f4;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.70);
       color:#222;
+      font-weight: 600;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    nav a:hover{ background:#ededed; }
-    ul{ margin:8px 0 0 20px; }
-    .note{ color:#555; }
-    .tag{
+    nav a:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.86);
+    }
+
+    .hero{
+      padding: 46px 0 10px;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: 40px;
+      line-height: 1.15;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 820px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 20px 0 36px;
+    }
+    @media (min-width: 900px){
+      .grid{ grid-template-columns: 1.25fr 0.75fr; align-items:start; }
+    }
+
+    .card{
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size: 20px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .card ul{ margin: 10px 0 0 20px; color: var(--muted); line-height: 1.7; }
+
+    .pill{
       display:inline-block;
-      font-size:12px;
-      padding:4px 10px;
-      border:1px solid #ddd;
-      border-radius:999px;
-      background:#fafafa;
-      margin-top:8px;
+      margin-top: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.75);
+      font-size: 12px;
+      font-weight: 700;
+      color: #2f2f2f;
+    }
+
+    .callout{
+      border-left: 4px solid rgba(69,103,243,0.9);
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--border);
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    footer{
+      padding: 26px 0 40px;
+      text-align:center;
+      color:#777;
+      font-size: 13px;
+    }
+    .disclaimer{
+      margin: 0 auto;
+      max-width: 860px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
     }
   </style>
 </head>
+
 <body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
 
-<header>
-  <div class="wrap">
-    <h1>Adult / Caregiver View</h1>
-    <p class="sub">AI Voice Chatbot for Grief Healing • Sponsor: Dr. Young</p>
-    <nav style="margin-top:12px;">
-      <a href="index.html">Choose View</a>
-      <a href="kids.html">Kids Version</a>
-    </nav>
+  <div class="page">
+    <header class="wrap">
+      <div class="topbar">
+        <div class="brand">Voice for Healing</div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="badge">Adult / Caregiver View</div>
+          <nav>
+            <a href="index.html">Home</a>
+            <a href="kids.html">Kids Version</a>
+          </nav>
+        </div>
+      </div>
+
+      <section class="hero">
+        <h1>For Adults & Caregivers</h1>
+        <p class="subtitle">
+          This page explains the project concept, who it supports, and the safety/consent principles behind an
+          <strong>AI voice chatbot for grief healing</strong> for children facing a parent’s serious illness or hospice care.
+        </p>
+      </section>
+    </header>
+
+    <main class="wrap">
+      <div class="grid">
+
+        <div class="card">
+          <h2>The problem we aim to solve</h2>
+          <p>
+            Children may experience intense grief before a parent passes away (anticipatory grief) and after loss.
+            Families often lack accessible, child-centered tools to help kids talk about feelings, ask questions,
+            and preserve meaningful memories.
+          </p>
+          <ul>
+            <li>Kids may feel confused, scared, sad, or guilty without the words to explain it.</li>
+            <li>Caregivers may struggle to start hard conversations or maintain emotional routines.</li>
+            <li>Traditional support can be expensive, limited, or short-term.</li>
+          </ul>
+
+          <div class="pill">Focus: children • illness/hospice loss</div>
+        </div>
+
+        <div class="card">
+          <h2>At-a-glance</h2>
+          <ul>
+            <li><strong>What:</strong> AI voice chatbot concept</li>
+            <li><strong>Goal:</strong> grief processing + memory sharing</li>
+            <li><strong>Users:</strong> children + caregivers</li>
+            <li><strong>Sponsor:</strong> Dr. Young</li>
+          </ul>
+          <div class="callout">
+            Caregiver reflection prompt: <em>“How would you feel if your child used a tool like this?”</em><br/>
+            This supports consent, boundaries, and family comfort.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <h2>How the chatbot helps (examples)</h2>
+        <ul>
+          <li><strong>Before loss:</strong> guided prompts help kids name feelings and prepare for changes.</li>
+          <li><strong>Memory building:</strong> children can save favorite stories and moments with their parent.</li>
+          <li><strong>After loss:</strong> reflective check-ins and calming activities support coping.</li>
+        </ul>
+        <div class="callout">
+          Design intention: supportive conversation and structure — not replacing caregivers or therapy.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Ethics, safety, and consent</h2>
+        <ul>
+          <li><strong>Consent-first:</strong> caregivers approve any saved content and voice training.</li>
+          <li><strong>Transparency:</strong> the system clearly states it is AI, not the real person.</li>
+          <li><strong>Boundaries:</strong> avoids medical advice and crisis handling; redirects to trusted adults/pros.</li>
+          <li><strong>Privacy:</strong> minimize data collection; protect children’s information.</li>
+        </ul>
+      </div>
+
+      <footer>
+        <div class="disclaimer">
+          This is an academic concept landing page and does not provide medical or therapeutic services.
+          If someone feels unsafe or in crisis, contact local emergency services or a trusted professional.
+        </div>
+      </footer>
+    </main>
   </div>
-</header>
-
-<main>
-  <div class="wrap">
-
-    <div class="card">
-      <span class="tag">Purpose</span>
-      <h2>The problem we’re solving</h2>
-      <p class="note">
-        Children experiencing a parent’s serious illness (including hospice care) often face
-        <strong>anticipatory grief</strong> before death occurs. Families may not have accessible,
-        affordable, developmentally appropriate tools to help children express feelings, ask questions,
-        and preserve meaningful memories.
-      </p>
-      <ul>
-        <li>Kids may feel confusion, fear, sadness, or guilt without the words to explain it.</li>
-        <li>Parents/caregivers may not know how to start grief conversations or support coping.</li>
-        <li>Support services can be costly, limited, or not built for ongoing day-to-day moments.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <span class="tag">Project idea</span>
-      <h2>What we propose</h2>
-      <p class="note">
-        A <strong>voice-based AI chatbot</strong> designed specifically for grief healing.
-        The tool supports gentle conversation, reflection, and storytelling to help children process emotions
-        and share memories in a supportive way.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Examples</span>
-      <h2>Example scenarios</h2>
-      <ul>
-        <li><strong>Before a parent passes:</strong> guided prompts that help a child name feelings and prepare for changes.</li>
-        <li><strong>Family memory sharing:</strong> children record favorite stories with a parent (with consent).</li>
-        <li><strong>After loss:</strong> the child revisits memories and uses calming activities and reflection prompts.</li>
-      </ul>
-      <p class="note">
-        Discussion prompt for caregivers: <em>“How would you feel if your child used a tool like this?”</em>
-        This helps set boundaries, expectations, and consent.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Ethics & Safety</span>
-      <h2>Safety principles</h2>
-      <ul>
-        <li><strong>Consent-first:</strong> caregivers approve any saved content or voice training.</li>
-        <li><strong>Transparency:</strong> the tool clearly states it is AI and not the real person.</li>
-        <li><strong>Not therapy:</strong> supports coping skills and reflection; does not replace professional care.</li>
-        <li><strong>Boundaries:</strong> avoids medical advice and provides “talk to a trusted adult” guidance.</li>
-      </ul>
-      <p class="note">
-        This landing page is informational and describes a class project concept.
-      </p>
-    </div>
-
-  </div>
-</main>
-
 </body>
 </html>
