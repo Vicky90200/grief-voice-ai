@@ -5,7 +5,7 @@ Sponsor: Dr. Young
 
 📌 Project Overview
 
-Voice for Healing is a conceptual landing page exploring the design of an AI voice chatbot intended to support children experiencing grief — particularly those facing a parent’s serious illness (including hospice care) or coping after loss.
+Voice for Healing is a conceptual landing page exploring the design of an AI voice chatbot intended to support children experiencing grief, particularly those facing a parent’s serious illness (including hospice care) or coping after loss.
 The project investigates how voice-based AI could:
 Encourage emotional expression
 Support memory sharing
@@ -21,7 +21,7 @@ Developmentally appropriate support tools
 Affordable ongoing emotional resources
 Structured prompts to process complex emotions
 Caregivers may struggle to start grief conversations, especially in hospice or terminal illness situations.
-This project explores whether a voice-based AI chatbot could help bridge that gap — ethically and safely.
+This project investigates whether a voice-based AI chatbot can help bridge that gap ethically and safely.
 
 
 👥 Target Audiences
@@ -32,7 +32,7 @@ The website provides two versions:
 Includes:
 Overview of the AI voice chatbot concept
 Explanation of voice replication (with consent)
-Setup flow (conceptual)
+Set up flow (conceptual)
 Ethical boundaries and safety considerations
 
 🟣 Teen View (13+)
@@ -67,7 +67,7 @@ This project is exploratory and academic in nature.
 HTML
 CSS
 GitHub Pages (for public hosting)
-No backend or AI system is implemented in this repository — this is a design concept landing page.
+No backend or AI system is implemented in this repository; this is a design concept landing page.
 
 🎓 Academic Context
 
