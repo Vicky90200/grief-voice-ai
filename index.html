@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Voice for Healing • AI Grief Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice for Healing • AI Grief Support</title>
 
   <style>
     :root {
       --max: 980px;
       --text: #232323;
       --muted: #5a5a5a;
-      --card: rgba(255,255,255,0.78);
-      --border: rgba(0,0,0,0.08);
-      --shadow: 0 18px 50px rgba(0,0,0,0.10);
+      --border: rgba(0, 0, 0, 0.08);
+      --card: rgba(255, 255, 255, 0.78);
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --shadow-strong: 0 18px 55px rgba(0, 0, 0, 0.10);
+      --radius-lg: 22px;
+      --radius-md: 16px;
     }
 
     * { box-sizing: border-box; }
@@ -21,23 +24,25 @@
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
-                  radial-gradient(900px 700px at 80% 0%, #ffe9f4 0%, transparent 55%),
-                  linear-gradient(135deg, #f8fbff, #fff4f9);
       overflow-x: hidden;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
+        radial-gradient(900px 700px at 80% 0%, #ffe9f4 0%, transparent 55%),
+        linear-gradient(135deg, #f8fbff, #fff4f9);
     }
 
-    /* Fade-in on load */
+    a { color: inherit; }
+
     .page {
       opacity: 0;
       transform: translateY(10px);
       animation: fadeUp 700ms ease forwards;
     }
+
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Floating background blobs */
     .blob {
       position: fixed;
       width: 420px;
@@ -46,30 +51,37 @@
       filter: blur(30px);
       opacity: 0.55;
       z-index: -1;
-      animation: floaty 14s ease-in-out infinite;
       pointer-events: none;
+      animation: floaty 16s ease-in-out infinite;
     }
+
     .blob.one {
-      background: radial-gradient(circle at 30% 30%, #7aa6ff, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #b6ccff, transparent 55%);
       top: -120px;
       left: -140px;
+      background:
+        radial-gradient(circle at 30% 30%, #7aa6ff, transparent 60%),
+        radial-gradient(circle at 70% 70%, #b6ccff, transparent 55%);
       animation-duration: 16s;
     }
+
     .blob.two {
-      background: radial-gradient(circle at 30% 30%, #ff84c8, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
       top: 80px;
       right: -160px;
+      background:
+        radial-gradient(circle at 30% 30%, #ff84c8, transparent 60%),
+        radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
       animation-duration: 18s;
     }
+
     .blob.three {
-      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
       bottom: -180px;
       left: 20%;
+      background:
+        radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+        radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
       animation-duration: 20s;
     }
+
     @keyframes floaty {
       0%, 100% { transform: translate(0, 0) scale(1); }
       50% { transform: translate(25px, -20px) scale(1.05); }
@@ -85,85 +97,43 @@
       padding: 28px 0 0;
     }
 
+    .glass {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(10px);
+    }
+
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
       padding: 10px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
     }
 
     .brand {
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.2px;
     }
 
     .badge {
       font-size: 12px;
-      color: #333;
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.7);
+      background: rgba(255, 255, 255, 0.7);
+      color: #333;
       white-space: nowrap;
     }
 
-    .hero {
-      text-align: center;
-      padding: 70px 0 26px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin: 0 0 14px;
-      line-height: 1.1;
-    }
-
-    .subtitle {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 760px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .ctaRow {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .primary, .secondary {
-      text-decoration: none;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.70);
-      color: #222;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-    .primary:hover, .secondary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-      background: rgba(255,255,255,0.86);
-    }
-
-    /* Sections */
     .section {
       margin: 22px 0;
       padding: 22px;
       border-radius: 20px;
       background: var(--card);
       border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(10px);
     }
 
@@ -178,13 +148,58 @@
       line-height: 1.7;
     }
 
-    /* Feature row */
+    .hero {
+      text-align: center;
+      padding: 70px 0 22px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .cta-row {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.70);
+      color: #222;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
     .features {
       display: grid;
       grid-template-columns: 1fr;
       gap: 14px;
       margin-top: 16px;
     }
+
     @media (min-width: 760px) {
       .features { grid-template-columns: 1fr 1fr 1fr; }
     }
@@ -193,14 +208,16 @@
       padding: 16px;
       border-radius: 18px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.72);
+      background: rgba(255, 255, 255, 0.72);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .feature:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 30px rgba(0,0,0,0.10);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.10);
     }
-    .icon {
+
+    .feature .icon {
       width: 46px;
       height: 46px;
       border-radius: 14px;
@@ -209,12 +226,14 @@
       font-size: 22px;
       margin-bottom: 10px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
     }
+
     .feature h3 {
       margin: 0 0 6px;
       font-size: 16px;
     }
+
     .feature p {
       margin: 0;
       font-size: 14px;
@@ -222,89 +241,87 @@
       line-height: 1.55;
     }
 
-    /* Testimonial */
-    .quote {
-      display: grid;
-      gap: 10px;
-    }
-    .quoteBox {
+    .quote-box {
       padding: 18px;
       border-radius: 18px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.72);
+      background: rgba(255, 255, 255, 0.72);
     }
-    .quoteMark {
+
+    .quote-mark {
       font-size: 26px;
       opacity: 0.6;
       margin-bottom: 6px;
     }
-    .quoteText {
+
+    .quote-text {
       margin: 0;
       color: #3a3a3a;
       line-height: 1.7;
     }
-    .quoteMeta {
+
+    .quote-meta {
       margin-top: 10px;
       font-size: 13px;
       color: #666;
     }
 
-    /* Version cards */
     .versions {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 14px;
     }
+
     @media (min-width: 760px) {
       .versions { grid-template-columns: 1fr 1fr; }
     }
 
-    .versionCard {
+    .version-card {
       padding: 22px;
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       color: white;
       text-decoration: none;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease;
       min-height: 168px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .versionCard:hover {
-      transform: translateY(-7px);
-    }
 
-    .adultCard {
+    .version-card:hover { transform: translateY(-7px); }
+
+    .version-card.adult {
       background: linear-gradient(135deg, #4567f3, #7a95ff);
-      box-shadow: 0 18px 55px rgba(69,103,243,0.30);
-    }
-    .kidsCard {
-      background: linear-gradient(135deg, #ff69b7, #ffb0e6);
-      box-shadow: 0 18px 55px rgba(255,105,183,0.30);
+      box-shadow: 0 18px 55px rgba(69, 103, 243, 0.30);
     }
 
-    .versionCard h3 {
+    .version-card.teen {
+      background: linear-gradient(135deg, #ff69b7, #ffb0e6);
+      box-shadow: 0 18px 55px rgba(255, 105, 183, 0.30);
+    }
+
+    .version-card h3 {
       margin: 0 0 8px;
       font-size: 20px;
-      letter-spacing: 0.2px;
     }
-    .versionCard p {
+
+    .version-card p {
       margin: 0;
       opacity: 0.95;
       line-height: 1.55;
       font-size: 14px;
     }
+
     .chip {
       align-self: flex-start;
       margin-top: 14px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.25);
-      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     footer {
@@ -320,116 +337,103 @@
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.55);
+      background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(10px);
     }
   </style>
 </head>
 
 <body>
-  <!-- Floating gradient shapes -->
   <div class="blob one"></div>
   <div class="blob two"></div>
   <div class="blob three"></div>
 
   <div class="page">
-
     <header class="wrap">
-      <div class="topbar">
+      <div class="topbar glass">
         <div class="brand">Voice for Healing</div>
         <div class="badge">Sponsor: Dr. Young • Class Project</div>
       </div>
     </header>
 
     <main class="wrap">
-
-      <!-- HERO -->
       <section class="hero">
-        <h1>A voice that helps<br/>hold on to memories.</h1>
+        <h1>Support that doesn’t rush grief.</h1>
         <p class="subtitle">
-          We’re exploring an <strong>AI voice chatbot for grief healing</strong> designed to support children
-          experiencing grief — before a loved one passes (anticipatory grief) and after loss.
-          The goal is gentle, age-appropriate support through conversation, memory sharing, and calming prompts.
+          A concept landing page for an <strong>AI grief-support chatbot</strong> designed to help teens (13+) process grief
+          with gentle prompts, memory sharing, and optional journaling-style reflection—while staying clear about what AI can
+          and cannot do.
         </p>
 
-        <div class="ctaRow">
-          <a class="primary" href="#choose">Choose a version</a>
-          <a class="secondary" href="#why">Why this matters</a>
+        <div class="cta-row">
+          <a class="btn" href="#choose">Choose a version</a>
+          <a class="btn" href="#why">Why this matters</a>
         </div>
       </section>
 
-      <!-- WHY THIS MATTERS -->
       <section id="why" class="section">
         <h2>Why this matters</h2>
         <p>
-          Children coping with a parent’s serious illness or hospice care often experience big emotions that are hard
-          to name. Support isn’t always accessible or child-centered, and families may struggle to start conversations.
-          A voice-based companion can offer structured prompts for reflection and memory sharing — while encouraging
-          connection with trusted caregivers.
+          People told us they want clearer structure, clearer boundaries, and language that validates grief
+          without trying to “fix it.” They also want reassurance about emotional safety, privacy, and when
+          the tool encourages outside support.
         </p>
 
-        <!-- FEATURE ROW -->
         <div class="features">
           <div class="feature">
-            <div class="icon">💛</div>
-            <h3>Gentle conversation</h3>
-            <p>Kid-friendly questions that help name feelings and reduce isolation.</p>
+            <div class="icon">🧭</div>
+            <h3>Clear structure</h3>
+            <p>Explains how chats work, what to expect, and when it suggests outside support.</p>
           </div>
 
           <div class="feature">
-            <div class="icon">📖</div>
-            <h3>Memory sharing</h3>
-            <p>Prompts to collect favorite stories and meaningful moments with loved ones.</p>
+            <div class="icon">📝</div>
+            <h3>Journaling prompts</h3>
+            <p>Relatable reflection prompts (not just “do breathing”) especially for teens.</p>
           </div>
 
           <div class="feature">
-            <div class="icon">🌿</div>
-            <h3>Calming support</h3>
-            <p>Simple grounding exercises and reflective check-ins for difficult days.</p>
+            <div class="icon">🔒</div>
+            <h3>Boundaries & safety</h3>
+            <p>Not a licensed professional; no harmful advice; privacy- and consent-aware.</p>
           </div>
         </div>
       </section>
 
-      <!-- TESTIMONIAL -->
       <section class="section">
         <h2>What someone might say</h2>
-        <div class="quote">
-          <div class="quoteBox">
-            <div class="quoteMark">“</div>
-            <p class="quoteText">
-              REPLACE THE QUOTE HERE
-            </p>
-            <div class="quoteMeta">— Mock quote from a caregiver (for concept demonstration)</div>
-          </div>
+        <div class="quote-box">
+          <div class="quote-mark">“</div>
+          <p class="quote-text">
+            I’d use a grief-support chatbot if it gently validated feelings, didn’t push me to talk before I’m ready,
+            and stayed clear about what it can’t do.
+          </p>
+          <div class="quote-meta">— Mock quote inspired by user testing themes</div>
         </div>
       </section>
 
-      <!-- CHOOSE VERSION -->
       <section id="choose" class="section">
         <h2>Choose your version</h2>
         <p>
-          The adult and kids experiences are intentionally different. Select the version you want to view.
+          Adult view includes: setup, consent controls, boundaries, and safety/limitations.
+          Teen view (13+) includes: what it is, how it helps, and supportive prompts (no setup details).
         </p>
 
         <div class="versions">
-          <a class="versionCard adultCard" href="adult.html">
+          <a class="version-card adult" href="adult.html">
             <div>
               <h3>Adult / Caregiver View</h3>
-              <p>
-                Research overview, ethics, consent, and safety design for a grief-focused AI voice chatbot.
-              </p>
+              <p>What it is + how to set it up + consent/controls + safety/limitations.</p>
             </div>
-            <div class="chip">Safety • Consent • Overview</div>
+            <div class="chip">Setup • Consent • Safety</div>
           </a>
 
-          <a class="versionCard kidsCard" href="kids.html">
+          <a class="version-card teen" href="kids.html">
             <div>
-              <h3>Kids View</h3>
-              <p>
-                A softer, kid-friendly page with simple explanations, calming prompts, and memory activities.
-              </p>
+              <h3>Teen View (13+)</h3>
+              <p>What it is + how it helps + reflection and memory prompts (no setup details).</p>
             </div>
-            <div class="chip">Simple • Friendly • Supportive</div>
+            <div class="chip">Explain • Reflect • Remember</div>
           </a>
         </div>
       </section>
@@ -440,7 +444,6 @@
           If someone feels unsafe or in crisis, contact local emergency services or a trusted professional.
         </div>
       </footer>
-
     </main>
   </div>
 </body>

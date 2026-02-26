@@ -2,124 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kids • Voice for Healing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teen View (13+) • Voice for Healing</title>
 
   <style>
-    :root{
+    :root {
       --max: 920px;
       --text: #242424;
       --muted: #5a5a5a;
-      --card: rgba(255,255,255,0.82);
-      --border: rgba(0,0,0,0.08);
+      --card: rgba(255, 255, 255, 0.82);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --accent: rgba(255, 105, 183, 0.90);
     }
-    *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
       color: var(--text);
+      overflow-x: hidden;
       background:
         radial-gradient(900px 650px at 15% 10%, #fff0f7 0%, transparent 55%),
         radial-gradient(900px 650px at 85% 0%, #e9f4ff 0%, transparent 55%),
         linear-gradient(135deg, #fff7fb, #ffffff);
-      overflow-x:hidden;
     }
 
-    /* Floating blobs */
-    .blob{
+    .page {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 700ms ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .blob {
       position: fixed;
-      width: 420px; height: 420px;
+      width: 420px;
+      height: 420px;
       border-radius: 999px;
       filter: blur(30px);
       opacity: 0.55;
       z-index: -1;
+      pointer-events: none;
       animation: floaty 16s ease-in-out infinite;
-      pointer-events:none;
     }
-    .blob.one{
-      background: radial-gradient(circle at 30% 30%, #ff7bbd, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
-      top:-140px; right:-170px;
+
+    .blob.one {
+      top: -140px;
+      right: -170px;
+      background:
+        radial-gradient(circle at 30% 30%, #ff7bbd, transparent 60%),
+        radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
       animation-duration: 18s;
     }
-    .blob.two{
-      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
-      bottom:-190px; left:-170px;
+
+    .blob.two {
+      bottom: -190px;
+      left: -170px;
+      background:
+        radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+        radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
       animation-duration: 20s;
     }
-    @keyframes floaty{
-      0%,100%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(-18px,-22px) scale(1.05); }
+
+    @keyframes floaty {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-18px, -22px) scale(1.05); }
     }
 
-    /* Fade-in */
-    .page{
-      opacity:0;
-      transform: translateY(10px);
-      animation: fadeUp 700ms ease forwards;
-    }
-    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0);} }
-
-    .wrap{
+    .wrap {
       max-width: var(--max);
       margin: 0 auto;
       padding: 0 18px;
     }
 
-    header{ padding: 24px 0 0; }
+    header { padding: 24px 0 0; }
 
-    .topbar{
-      display:flex;
+    .hero {
+      padding: 36px 0 8px;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 18px 0 22px;
+    }
+
+    @media (min-width: 780px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .topbar {
+      display: flex;
       justify-content: space-between;
-      align-items:center;
-      gap:10px;
+      align-items: center;
+      gap: 10px;
       padding: 10px 14px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.60);
+      background: rgba(255, 255, 255, 0.60);
       border: 1px solid var(--border);
       backdrop-filter: blur(10px);
     }
-    .brand{ font-weight: 900; letter-spacing: 0.2px; }
-    .badge{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.75);
-      color:#333;
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 0.2px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      color: #333;
       white-space: nowrap;
     }
 
-    nav a{
-      text-decoration:none;
-      display:inline-block;
-      margin-left:8px;
-      padding:8px 10px;
+    nav a {
+      text-decoration: none;
+      display: inline-block;
+      margin-left: 8px;
+      padding: 8px 10px;
       border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.75);
-      color:#222;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      color: #222;
       font-weight: 700;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    nav a:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-      background: rgba(255,255,255,0.90);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    .hero{
-      padding: 36px 0 8px;
-      text-align:center;
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.90);
     }
-    h1{
-      margin:0 0 10px;
+
+    h1 {
+      margin: 0 0 10px;
       font-size: 38px;
       line-height: 1.15;
     }
-    .subtitle{
+
+    .subtitle {
       margin: 0 auto;
       max-width: 760px;
       color: var(--muted);
@@ -127,86 +158,83 @@
       line-height: 1.7;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin: 18px 0 34px;
-    }
-    @media (min-width: 780px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-    }
-
-    .card{
+    .card {
       padding: 18px;
       border-radius: 22px;
       background: var(--card);
       border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
     }
-    .card h2{
-      margin:0 0 8px;
+
+    .card h2 {
+      margin: 0 0 8px;
       font-size: 20px;
     }
-    .card p{
-      margin:0;
+
+    .card p {
+      margin: 0;
       color: var(--muted);
       line-height: 1.7;
       font-size: 16px;
     }
-    .big{ font-size: 17px; color:#444; }
 
-    ul{ margin: 10px 0 0 20px; color: #555; line-height: 1.7; font-size: 16px; }
+    ul {
+      margin: 10px 0 0 20px;
+      color: #555;
+      line-height: 1.7;
+      font-size: 16px;
+    }
 
-    .chip{
-      display:inline-block;
+    .chip {
+      display: inline-block;
       margin-top: 10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid var(--border);
       font-size: 12px;
-      font-weight: 800;
-      color:#333;
+      font-weight: 900;
+      color: #333;
     }
 
-    .activity{
+    .activity {
       margin-top: 12px;
       padding: 14px;
       border-radius: 18px;
-      border: 2px dashed rgba(255,105,183,0.55);
-      background: rgba(255,255,255,0.75);
+      border: 2px dashed rgba(255, 105, 183, 0.55);
+      background: rgba(255, 255, 255, 0.75);
       color: #444;
       line-height: 1.6;
       font-size: 16px;
     }
 
-    .softWarn{
-      border-left: 4px solid rgba(255,105,183,0.9);
+    .softWarn {
+      margin-top: 12px;
       padding: 12px 14px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.76);
       border: 1px solid var(--border);
-      margin-top: 12px;
+      border-left: 4px solid var(--accent);
+      background: rgba(255, 255, 255, 0.76);
       color: #555;
       line-height: 1.6;
       font-size: 15px;
     }
 
-    footer{
+    footer {
       padding: 26px 0 40px;
-      text-align:center;
-      color:#777;
+      text-align: center;
+      color: #777;
       font-size: 13px;
     }
-    .disclaimer{
-      margin: 0 auto;
+
+    .disclaimer {
       max-width: 860px;
+      margin: 0 auto;
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.60);
+      background: rgba(255, 255, 255, 0.60);
       backdrop-filter: blur(10px);
     }
   </style>
@@ -220,113 +248,89 @@
     <header class="wrap">
       <div class="topbar">
         <div class="brand">Voice for Healing</div>
+
         <div style="display:flex; align-items:center; gap:10px;">
-          <div class="badge">Kids View</div>
+          <div class="badge">Teen View (13+)</div>
           <nav>
             <a href="index.html">Home</a>
-            <a href="adult.html">Adult Version</a>
+            <a href="adult.html">Adult View</a>
           </nav>
         </div>
       </div>
 
       <section class="hero">
-        <h1>Hi 💛 You’re not alone</h1>
+        <h1>A place to slow down.</h1>
         <p class="subtitle">
-          Sometimes someone we love gets very sick or dies. That can bring big feelings.
-          This page shares a gentle idea: an <strong>AI voice helper</strong> that asks kind questions and helps you remember.
+          This is a concept for a grief-support AI tool. It can help you reflect, name what you’re feeling,
+          and hold onto memories. You can skip anything. Silence is allowed.
         </p>
       </section>
     </header>
 
-   <main class="wrap">
-  <div class="grid">
+    <main class="wrap">
+      <!-- Two-column overview cards -->
+      <section class="grid">
+        <div class="card">
+          <h2>What it is</h2>
+          <p>
+            A voice-based AI helper that asks gentle questions and offers reflection prompts.
+            It’s not a real person and not a therapist.
+          </p>
+          <span class="chip">Support tool</span>
+        </div>
 
-    <div class="card">
-      <h2>What is this?</h2>
-      <p class="big">
-        This is a voice-based AI helper designed to support people who are dealing with grief.
-        It can ask thoughtful questions, help you name what you’re feeling, and guide you through
-        reflection and memory prompts at your own pace.
-      </p>
-      <span class="chip">Support • Reflection • Memory</span>
-    </div>
+        <div class="card">
+          <h2>What you control</h2>
+          <ul>
+            <li>You can skip questions</li>
+            <li>You can stop anytime</li>
+            <li>You don’t have to share everything</li>
+            <li>If you feel overwhelmed, take a break and reach out to someone you trust</li>
+          </ul>
+          <span class="chip">You choose</span>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Reflection prompts (more like journaling)</h2>
+        <ul>
+          <li>What part of today felt the hardest?</li>
+          <li>What do you wish people understood about your grief?</li>
+          <li>What’s one thing you miss the most—and one thing you still carry?</li>
+          <li>What kind of support would actually help this week?</li>
+        </ul>
+        <div class="softWarn">
+          If a prompt makes you feel worse, skip it. You can come back later—or not at all.
+        </div>
+      </section>
 
-    <div class="card">
-      <h2>Important to know</h2>
-      <p class="big">
-        This is an <strong>AI tool</strong>, not a real person and not a therapist.
-        You’re always in control: you can skip questions, pause, or stop anytime.
-      </p>
-      <div class="softWarn">
-        If you feel unsafe, overwhelmed, or like you might hurt yourself, reach out to a trusted adult
-        right away or contact local emergency services.
-      </div>
-      <span class="chip">You choose what to share</span>
-    </div>
+      <section class="card">
+        <h2>Memory prompts</h2>
+        <ul>
+          <li>A memory that keeps replaying is…</li>
+          <li>Something small that reminds me of them is…</li>
+          <li>One thing I learned from them is…</li>
+          <li>If I could say one more thing, it would be…</li>
+        </ul>
+        <span class="chip">Remembering is allowed</span>
+      </section>
 
-  </div>
+      <section class="card">
+        <h2>Quick grounding (30–60 seconds)</h2>
+        <p>Not “fixing” anything—just helping your body calm down.</p>
+        <div class="activity">
+          Inhale 4 seconds • hold 2 • exhale 6 • repeat 3 times.<br />
+          If counting is annoying: just make your exhale longer than your inhale.
+        </div>
+        <span class="chip">Small steps</span>
+      </section>
 
-  <div class="card">
-    <h2>What it can help with</h2>
-    <ul>
-      <li><strong>Putting feelings into words:</strong> when everything feels messy or hard to explain</li>
-      <li><strong>Anticipatory grief:</strong> when someone is seriously ill and you’re grieving before they’re gone</li>
-      <li><strong>After loss:</strong> when you miss someone and want a structured way to process it</li>
-      <li><strong>Keeping memories:</strong> saving stories, moments, and things you don’t want to forget</li>
-    </ul>
-    <span class="chip">Before loss • After loss</span>
-  </div>
-
-  <div class="card">
-    <h2>Quick grounding (30–60 seconds) 🌿</h2>
-    <p class="big">
-      When emotions spike, grounding can help your body calm down.
-    </p>
-    <div class="activity">
-      <strong>Try this:</strong><br/>
-      • Inhale for 4 seconds<br/>
-      • Hold for 2 seconds<br/>
-      • Exhale for 6 seconds<br/>
-      • Repeat 3 times<br/><br/>
-      If counting feels annoying, just focus on making your exhale longer than your inhale.
-    </div>
-    <span class="chip">Calm your nervous system</span>
-  </div>
-
-  <div class="card">
-    <h2>Reflection prompts (optional)</h2>
-    <p class="big">
-      You can answer one, or none. This is just a starting point.
-    </p>
-    <ul>
-      <li>“What’s the hardest part of today?”</li>
-      <li>“What do you wish people understood about what you’re feeling?”</li>
-      <li>“What’s one memory you want to hold onto?”</li>
-      <li>“What would ‘support’ look like for you right now?”</li>
-    </ul>
-    <div class="softWarn">
-      If a question makes you feel worse, it’s okay to skip it and come back later.
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Memory prompts 📖</h2>
-    <ul>
-      <li>“A moment I keep replaying is…”</li>
-      <li>“One thing I learned from them is…”</li>
-      <li>“If I could say one more thing, it would be…”</li>
-      <li>“Something small that reminds me of them is…”</li>
-    </ul>
-    <span class="chip">Your memories matter</span>
-  </div>
-
-  <footer>
-    <div class="disclaimer">
-      This is a school project concept and does not provide medical or therapeutic services.
-      If you need support, talk to a trusted adult, counselor, or a healthcare professional.
-    </div>
-  </footer>
-  </main>
+      <footer>
+        <div class="disclaimer">
+          This is a school project concept and does not provide medical or therapeutic services.
+          If you feel unsafe or in crisis, contact local emergency services or a trusted adult/professional.
+        </div>
+      </footer>
+    </main>
   </div>
 </body>
 </html>

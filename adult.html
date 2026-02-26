@@ -2,194 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Adult / Caregiver • Voice for Healing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adult / Caregiver • Voice for Healing</title>
 
   <style>
-    :root{
+    :root {
       --max: 980px;
       --text: #232323;
       --muted: #5a5a5a;
-      --card: rgba(255,255,255,0.78);
-      --border: rgba(0,0,0,0.08);
+      --card: rgba(255, 255, 255, 0.78);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     }
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       color: var(--text);
+      overflow-x: hidden;
       background:
         radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
         radial-gradient(900px 700px at 80% 0%, #e9efff 0%, transparent 55%),
         linear-gradient(135deg, #f8fbff, #ffffff);
-      overflow-x:hidden;
     }
 
-    /* Floating blobs */
-    .blob{
+    .page {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 700ms ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .blob {
       position: fixed;
-      width: 420px; height: 420px;
+      width: 420px;
+      height: 420px;
       border-radius: 999px;
       filter: blur(30px);
       opacity: 0.55;
       z-index: -1;
+      pointer-events: none;
       animation: floaty 16s ease-in-out infinite;
-      pointer-events:none;
     }
-    .blob.one{
-      background: radial-gradient(circle at 30% 30%, #5f86ff, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #c7d6ff, transparent 55%);
-      top:-140px; left:-150px;
+
+    .blob.one {
+      top: -140px;
+      left: -150px;
+      background:
+        radial-gradient(circle at 30% 30%, #5f86ff, transparent 60%),
+        radial-gradient(circle at 70% 70%, #c7d6ff, transparent 55%);
       animation-duration: 18s;
     }
-    .blob.two{
-      background: radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
-                  radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
-      bottom:-190px; right:-190px;
+
+    .blob.two {
+      bottom: -190px;
+      right: -190px;
+      background:
+        radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
+        radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
       animation-duration: 20s;
     }
-    @keyframes floaty{
-      0%,100%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(25px,-20px) scale(1.05); }
+
+    @keyframes floaty {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(25px, -20px) scale(1.05); }
     }
 
-    /* Fade-in on load */
-    .page{
-      opacity:0;
-      transform: translateY(10px);
-      animation: fadeUp 700ms ease forwards;
-    }
-    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0);} }
-
-    .wrap{
+    .wrap {
       max-width: var(--max);
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    header{
-      padding: 28px 0 0;
+    header { padding: 28px 0 0; }
+
+    .hero { padding: 46px 0 10px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 20px 0;
     }
-    .topbar{
-      display:flex;
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+    }
+
+    .topbar {
+      display: flex;
       justify-content: space-between;
-      align-items:center;
-      gap:10px;
+      align-items: center;
+      gap: 10px;
       padding: 10px 14px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.55);
+      background: rgba(255, 255, 255, 0.55);
       border: 1px solid var(--border);
       backdrop-filter: blur(10px);
     }
-    .brand{ font-weight: 800; letter-spacing:0.2px; }
-    .badge{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.7);
-      color:#333;
-      white-space: nowrap;
-    }
-    nav a{
-      text-decoration:none;
-      display:inline-block;
-      margin-left:8px;
-      padding:8px 10px;
-      border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.70);
-      color:#222;
-      font-weight: 600;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    nav a:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-      background: rgba(255,255,255,0.86);
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 0.2px;
     }
 
-    .hero{
-      padding: 46px 0 10px;
+    .badge {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      color: #333;
+      white-space: nowrap;
     }
-    h1{
+
+    nav a {
+      text-decoration: none;
+      display: inline-block;
+      margin-left: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.72);
+      color: #222;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.90);
+    }
+
+    h1 {
       margin: 0 0 10px;
       font-size: 40px;
       line-height: 1.15;
     }
-    .subtitle{
+
+    .subtitle {
       margin: 0;
+      max-width: 860px;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.7;
-      max-width: 820px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin: 20px 0 36px;
-    }
-    @media (min-width: 900px){
-      .grid{ grid-template-columns: 1.25fr 0.75fr; align-items:start; }
-    }
-
-    .card{
+    .card {
       padding: 20px;
       border-radius: 20px;
       background: var(--card);
       border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
     }
-    .card h2{
-      margin:0 0 10px;
+
+    .card h2 {
+      margin: 0 0 10px;
       font-size: 20px;
     }
-    .card p{
+
+    .card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.7;
     }
-    .card ul{ margin: 10px 0 0 20px; color: var(--muted); line-height: 1.7; }
 
-    .pill{
-      display:inline-block;
+    .card ul {
+      margin: 10px 0 0 20px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pill {
+      display: inline-block;
       margin-top: 10px;
       padding: 7px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.75);
+      background: rgba(255, 255, 255, 0.80);
       font-size: 12px;
-      font-weight: 700;
-      color: #2f2f2f;
+      font-weight: 800;
     }
 
-    .callout{
-      border-left: 4px solid rgba(69,103,243,0.9);
+    .callout {
+      margin-top: 12px;
       padding: 12px 14px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.72);
       border: 1px solid var(--border);
-      margin-top: 12px;
+      border-left: 4px solid rgba(69, 103, 243, 0.90);
+      background: rgba(255, 255, 255, 0.76);
       color: var(--muted);
       line-height: 1.6;
     }
 
-    footer{
+    footer {
       padding: 26px 0 40px;
-      text-align:center;
-      color:#777;
+      text-align: center;
+      color: #777;
       font-size: 13px;
     }
-    .disclaimer{
-      margin: 0 auto;
+
+    .disclaimer {
       max-width: 860px;
+      margin: 0 auto;
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.55);
+      background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(10px);
     }
   </style>
@@ -203,92 +232,118 @@
     <header class="wrap">
       <div class="topbar">
         <div class="brand">Voice for Healing</div>
+
         <div style="display:flex; align-items:center; gap:10px;">
-          <div class="badge">Adult / Caregiver View</div>
+          <div class="badge">Adult / Caregiver</div>
           <nav>
             <a href="index.html">Home</a>
-            <a href="kids.html">Kids Version</a>
+            <a href="kids.html">Teen View</a>
           </nav>
         </div>
       </div>
-
       <section class="hero">
-        <h1>For Adults & Caregivers</h1>
+        <h1>Adult / Caregiver Overview</h1>
         <p class="subtitle">
-          This page explains the project concept, who it supports, and the safety/consent principles behind an
-          <strong>AI voice chatbot for grief healing</strong> for children facing a parent’s serious illness or hospice care.
+          This page explains what the grief-support chatbot is, how caregivers would set it up,
+          and the safety boundaries. It is meant to support conversations—not replace therapy or real support.
         </p>
       </section>
     </header>
 
     <main class="wrap">
-    <div class="grid">
+      <section class="grid">
+        <div class="card">
+          <h2>What the chatbot is</h2>
+          <p>
+            A grief-support chatbot designed for teens (13+) to help with reflection, memory sharing,
+            and coping prompts—especially during a loved one’s serious illness (including hospice) and after loss.
+          </p>
 
-    <div class="card">
-      <h2>What the bot is</h2>
-      <p>
-        This project explores an <strong>AI voice chatbot for grief healing</strong> designed to support children
-        coping with a parent’s serious illness (including hospice) and/or loss. The bot uses conversation prompts
-        to help children name feelings and share memories in a gentle, age-appropriate way.
-      </p>
-      <div class="pill">Support tool • Not therapy</div>
-    </div>
+          <ul>
+            <li>Validates feelings without trying to “fix” grief</li>
+            <li>Encourages reflection and journaling-style prompts</li>
+            <li>Suggests outside support when needed</li>
+          </ul>
 
-    <div class="card">
-      <h2>“Replicating voice” (what that means)</h2>
-      <p>
-        With caregiver consent, the system can be configured to speak in a <strong>voice similar to a loved one</strong>
-        using recorded audio samples. The goal is comfort and memory connection — not pretending the loved one is truly present.
-      </p>
-      <div class="callout">
-        Key boundary: the experience should be clearly framed as <em>AI-generated</em>, not the real person.
-      </div>
-    </div>
+          <div class="pill">Support tool • Not licensed care</div>
+        </div>
 
-  </div>
+        <div class="card">
+          <h2>Quick caregiver comfort check</h2>
 
-  <div class="card">
-    <h2>How an adult would set it up (concept flow)</h2>
-    <ul>
-      <li><strong>1) Choose settings:</strong> select “Kids Mode” language level + topics to avoid.</li>
-      <li><strong>2) Consent + comfort check:</strong> caregiver confirms boundaries and decides if voice is enabled.</li>
-      <li><strong>3) Provide audio (optional):</strong> upload short recordings (stories, messages, greetings).</li>
-      <li><strong>4) Review:</strong> caregiver listens to samples and approves before a child can use it.</li>
-      <li><strong>5) Start using:</strong> the child gets guided prompts (feelings + memories), with caregiver oversight.</li>
-    </ul>
-    <div class="callout">
-      Caregiver reflection prompt: <em>“How would you feel if your child used a tool like this?”</em>
-      This supports consent, boundaries, and emotional readiness.
-    </div>
-  </div>
+          <div class="callout">
+            Prompt: <em>“How would you feel if your child used a tool like this?”</em><br />
+            Many caregivers prefer trying it themselves first and setting limits.
+          </div>
 
-  <div class="card">
-    <h2>What it can do (examples)</h2>
-    <ul>
-      <li><strong>Memory sharing:</strong> prompts like “Tell me a favorite story about your parent.”</li>
-      <li><strong>Emotional check-ins:</strong> “What are you feeling today?” with simple coping options.</li>
-      <li><strong>Calming routines:</strong> breathing exercises and grounding prompts on hard days.</li>
-    </ul>
-  </div>
+          <ul>
+            <li>Try it together first</li>
+            <li>Set time limits</li>
+            <li>Decide what topics/phrases to block</li>
+          </ul>
+        </div>
+      </section>
 
-  <div class="card">
-    <h2>Safety, ethics, and limitations</h2>
-    <ul>
-      <li><strong>Consent-first:</strong> caregivers control uploads, voice training, and saved content.</li>
-      <li><strong>Transparency:</strong> the bot reminds users it is AI and not the real person.</li>
-      <li><strong>Boundaries:</strong> no medical advice, diagnosis, or “this is what your parent would say” claims.</li>
-      <li><strong>Emotional safeguards:</strong> encourages talking to trusted adults; provides crisis guidance.</li>
-      <li><strong>Privacy:</strong> minimize stored data; protect children’s information.</li>
-    </ul>
-  </div>
+      <section class="card">
+        <h2>How chats are structured (what to expect)</h2>
 
-  <footer>
-    <div class="disclaimer">
-      This is an academic concept landing page and does not provide medical or therapeutic services.
-      If someone feels unsafe or in crisis, contact local emergency services or a trusted professional.
-    </div>
-  </footer>
-  </main>
+        <ul>
+          <li><strong>Step 1 — Check-in:</strong> mood + energy + “how hard is today?”</li>
+          <li><strong>Step 2 — Choice:</strong> reflect, remember, or ground (short coping exercise)</li>
+          <li><strong>Step 3 — Prompts:</strong> journaling-style questions; user can skip or stay quiet</li>
+          <li><strong>Step 4 — Wrap-up:</strong> summarize what helped + suggest a next step (drink water, text someone, take a break)</li>
+          <li><strong>Escalation:</strong> if someone seems unsafe or overwhelmed, it encourages reaching a trusted adult/professional</li>
+        </ul>
+
+        <div class="callout">
+          Goal: clear structure + emotional safety + no pressure to talk before they’re ready.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Setup (conceptual)</h2>
+        <ul>
+          <li><strong>1) Choose a mode:</strong> Teen (13+) language + boundaries</li>
+          <li><strong>2) Consent controls:</strong> caregiver approves features + saved content</li>
+          <li><strong>3) Customize limits:</strong> time limits, blocked topics/phrases, and “always encourage outside support” rules</li>
+          <li><strong>4) Privacy choices:</strong> minimize stored data; allow “no saving” mode</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>About “voice replication” (we adjusted this)</h2>
+
+        <p>
+          Based on feedback, we do <strong>not</strong> frame this as “replicating” a loved one. Instead, the safer concept is
+          <strong>Voice Memories</strong>: caregiver-approved, pre-recorded clips (e.g., a bedtime message, encouragement, a story).
+        </p>
+
+        <div class="callout">
+          Why: users worried voice replication could feel too real, create over-reliance, or replace human connection.
+          Voice Memories keeps the comfort while avoiding “this is them” framing.
+        </div>
+
+        <div class="pill">Voice Memories • optional</div>
+      </section>
+
+      <section class="card">
+        <h2>Safety, ethics, and limitations</h2>
+        <ul>
+          <li><strong>Not a professional:</strong> clearly states it is not licensed mental health care</li>
+          <li><strong>No harmful advice:</strong> avoids pushing disclosure or giving medical guidance</li>
+          <li><strong>Clarity of purpose:</strong> grief support + reflection; not “a friend replacement”</li>
+          <li><strong>Privacy-first:</strong> minimal data, caregiver controls, and clear explanation of what’s saved</li>
+          <li><strong>Outside support:</strong> encourages therapy/real help when grief is severe or risks are present</li>
+        </ul>
+      </section>
+
+      <footer>
+        <div class="disclaimer">
+          This is an academic concept landing page and does not provide medical or therapeutic services.
+          If someone feels unsafe or in crisis, contact local emergency services or a trusted professional.
+        </div>
+      </footer>
+    </main>
   </div>
 </body>
 </html>
