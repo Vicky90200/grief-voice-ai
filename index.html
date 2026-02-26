@@ -93,39 +93,7 @@
       padding: 0 20px;
     }
 
-    header {
-      padding: 28px 0 0;
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      backdrop-filter: blur(10px);
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-    }
-
-    .brand {
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-
-    .badge {
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.7);
-      color: #333;
-      white-space: nowrap;
-    }
+    header { padding: 28px 0 0; }
 
     .section {
       margin: 22px 0;
@@ -148,6 +116,33 @@
       line-height: 1.7;
     }
 
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.7);
+      color: #333;
+      white-space: nowrap;
+    }
+
     .hero {
       text-align: center;
       padding: 70px 0 22px;
@@ -159,7 +154,7 @@
       line-height: 1.1;
     }
 
-    .hero .subtitle {
+    .subtitle {
       font-size: 18px;
       color: var(--muted);
       max-width: 780px;
@@ -324,6 +319,69 @@
       font-weight: 800;
     }
 
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 760px) {
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 1100px) {
+      .team-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    }
+
+    .team-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      background: linear-gradient(135deg, #7aa6ff, #ff9ad5);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: white;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .team-card h3 {
+      margin: 8px 0 6px;
+      font-size: 16px;
+    }
+
+    .role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .team-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
     footer {
       text-align: center;
       padding: 28px 0 40px;
@@ -350,7 +408,7 @@
 
   <div class="page">
     <header class="wrap">
-      <div class="topbar glass">
+      <div class="topbar">
         <div class="brand">Voice for Healing</div>
         <div class="badge">Sponsor: Dr. Young • Class Project</div>
       </div>
@@ -361,13 +419,13 @@
         <h1>Support that doesn’t rush grief.</h1>
         <p class="subtitle">
           A concept landing page for an <strong>AI grief-support chatbot</strong> designed to help teens (13+) process grief
-          with gentle prompts, memory sharing, and optional journaling-style reflection—while staying clear about what AI can
-          and cannot do.
+          with gentle prompts, memory sharing, and clear ethical boundaries.
         </p>
 
         <div class="cta-row">
           <a class="btn" href="#choose">Choose a version</a>
           <a class="btn" href="#why">Why this matters</a>
+          <a class="btn" href="#team">Meet the team</a>
         </div>
       </section>
 
@@ -408,7 +466,7 @@
             I’d use a grief-support chatbot if it gently validated feelings, didn’t push me to talk before I’m ready,
             and stayed clear about what it can’t do.
           </p>
-          <div class="quote-meta">— Mock quote inspired by user testing themes</div>
+          <div class="quote-meta">— Anon</div>
         </div>
       </section>
 
@@ -435,6 +493,44 @@
             </div>
             <div class="chip">Explain • Reflect • Remember</div>
           </a>
+        </div>
+      </section>
+
+      <section id="team" class="section">
+        <h2>Meet the Team</h2>
+        <p>
+          This project was developed by a multidisciplinary team exploring the intersection
+          of AI, grief support, and ethical design.
+        </p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="avatar">AR</div>
+            <h3>Amrin Rahman</h3>
+            <div class="role">Team Lead</div>
+            <p>Guides overall strategy, coordinates roles, and ensures alignment with project goals.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="avatar">SS</div>
+            <h3>Sanaa Sharda</h3>
+            <div class="role">UX Lead</div>
+            <p>Shapes the interface and interaction flow to support clarity and emotional safety.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="avatar">KB</div>
+            <h3>Karabelo Bowsky</h3>
+            <div class="role">Research Lead</div>
+            <p>Analyzes user feedback and academic research to inform design choices.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="avatar">VF</div>
+            <h3>Victoria Flores</h3>
+            <div class="role">Coding Lead</div>
+            <p>Builds and structures the website, translating design into functional code.</p>
+          </div>
         </div>
       </section>
 

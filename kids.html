@@ -198,17 +198,6 @@
       color: #333;
     }
 
-    .activity {
-      margin-top: 12px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 2px dashed rgba(255, 105, 183, 0.55);
-      background: rgba(255, 255, 255, 0.75);
-      color: #444;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
     .softWarn {
       margin-top: 12px;
       padding: 12px 14px;
@@ -219,6 +208,63 @@
       color: #555;
       line-height: 1.6;
       font-size: 15px;
+    }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 780px) {
+      .purpose-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .purpose-box {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .actions {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 780px) {
+      .actions { grid-template-columns: 1fr 1fr; }
+    }
+
+    .action-box {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      color: #444;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .action-box strong { color: #222; }
+
+    .copy {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed rgba(0,0,0,0.18);
+      background: rgba(255, 255, 255, 0.70);
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+      user-select: text;
+      word-break: break-word;
     }
 
     footer {
@@ -268,7 +314,39 @@
     </header>
 
     <main class="wrap">
-      <!-- Two-column overview cards -->
+      <section class="card">
+        <h2>Purpose of the bot</h2>
+        <p>
+          This bot is meant to help you process grief in a low-pressure way—by giving you structure when your brain feels messy.
+          It’s not here to “fix you.” It’s here to help you get through moments.
+        </p>
+
+        <div class="purpose-grid">
+          <div class="purpose-box">
+            <strong>What it can do</strong><br />
+            • Offer journaling-style prompts<br />
+            • Help you name feelings<br />
+            • Support memory sharing<br />
+            • Suggest small next steps
+          </div>
+
+          <div class="purpose-box">
+            <strong>What it can’t do</strong><br />
+            • Replace a real person<br />
+            • Provide therapy/medical advice<br />
+            • Tell you what someone “would say”<br />
+            • Make grief go away
+          </div>
+        </div>
+
+        <div class="softWarn">
+          If you feel unsafe or like you might hurt yourself, reach out to a trusted adult right away
+          or contact local emergency services.
+        </div>
+
+        <span class="chip">Support • Not therapy</span>
+      </section>
+
       <section class="grid">
         <div class="card">
           <h2>What it is</h2>
@@ -290,6 +368,7 @@
           <span class="chip">You choose</span>
         </div>
       </section>
+
       <section class="card">
         <h2>Reflection prompts (more like journaling)</h2>
         <ul>
@@ -315,13 +394,54 @@
       </section>
 
       <section class="card">
-        <h2>Quick grounding (30–60 seconds)</h2>
-        <p>Not “fixing” anything—just helping your body calm down.</p>
-        <div class="activity">
-          Inhale 4 seconds • hold 2 • exhale 6 • repeat 3 times.<br />
-          If counting is annoying: just make your exhale longer than your inhale.
+        <h2>When you don’t know what to do next</h2>
+        <p>
+          Pick one. The goal isn’t “feel better.” It’s just to make the next few minutes more manageable.
+        </p>
+
+        <div class="actions">
+          <div class="action-box">
+            <strong>Option A — “Say it out loud” (1 sentence)</strong><br />
+            Finish this: <em>“Right now, the hardest part is…”</em><br />
+            That’s it. One sentence counts.
+          </div>
+
+          <div class="action-box">
+            <strong>Option B — Text someone (copy/paste)</strong>
+            <div class="copy">
+              Hey, I’m having a hard time. I don’t really need advice — can you just stay with me / talk for a bit?
+            </div>
+          </div>
+
+          <div class="action-box">
+            <strong>Option C — Ask for space (copy/paste)</strong>
+            <div class="copy">
+              I’m overwhelmed right now. I care, but I can’t talk about this today. Can we check in later?
+            </div>
+          </div>
+
+          <div class="action-box">
+            <strong>Option D — Save one memory</strong><br />
+            Save something small: a photo, a note, a voice message, or 3 sentences about a moment you don’t want to forget.
+          </div>
+
+          <div class="action-box">
+            <strong>Option E — “What would I tell a friend?”</strong><br />
+            Imagine your friend is feeling exactly what you feel. Write one kind sentence you’d tell them — then read it back to yourself.
+          </div>
+
+          <div class="action-box">
+            <strong>Option F — Get real support</strong><br />
+            If it feels too heavy: talk to a trusted adult, counselor, or someone who can actually show up for you.
+          </div>
         </div>
-        <span class="chip">Small steps</span>
+
+        <div class="softWarn">
+          If you feel unsafe or like you might hurt yourself, reach out to a trusted adult right away
+          or contact local emergency services.
+        </div>
+
+        <span class="chip">Practical next steps</span>
       </section>
 
       <footer>
