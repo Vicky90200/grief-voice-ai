@@ -13,6 +13,7 @@
       --card: rgba(255, 255, 255, 0.78);
       --border: rgba(0, 0, 0, 0.08);
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --accent: rgba(69, 103, 243, 0.90);
     }
 
     * { box-sizing: border-box; }
@@ -21,205 +22,130 @@
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      overflow-x: hidden;
       background:
         radial-gradient(1200px 800px at 20% 10%, #eef4ff 0%, transparent 60%),
         radial-gradient(900px 700px at 80% 0%, #e9efff 0%, transparent 55%),
         linear-gradient(135deg, #f8fbff, #ffffff);
+      overflow-x: hidden;
     }
 
-    .page {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 700ms ease forwards;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .page { opacity: 0; transform: translateY(10px); animation: fadeUp 700ms ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
     .blob {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      filter: blur(30px);
-      opacity: 0.55;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; width: 420px; height: 420px; border-radius: 999px;
+      filter: blur(30px); opacity: 0.55; z-index: -1; pointer-events: none;
       animation: floaty 16s ease-in-out infinite;
     }
 
     .blob.one {
-      top: -140px;
-      left: -150px;
       background:
         radial-gradient(circle at 30% 30%, #5f86ff, transparent 60%),
         radial-gradient(circle at 70% 70%, #c7d6ff, transparent 55%);
-      animation-duration: 18s;
+      top: -140px; left: -150px; animation-duration: 18s;
     }
 
     .blob.two {
-      bottom: -190px;
-      right: -190px;
       background:
         radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
         radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
-      animation-duration: 20s;
+      bottom: -190px; right: -190px; animation-duration: 20s;
     }
 
     @keyframes floaty {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(25px, -20px) scale(1.05); }
+      0%,100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(25px,-20px) scale(1.05); }
     }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
     header { padding: 28px 0 0; }
 
-    .hero { padding: 46px 0 10px; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin: 20px 0;
-    }
-
-    @media (min-width: 900px) {
-      .grid {
-        grid-template-columns: 1.15fr 0.85fr;
-        align-items: start;
-      }
-    }
-
     .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 16px;
+      background: rgba(255,255,255,0.55); border: 1px solid var(--border);
       backdrop-filter: blur(10px);
     }
 
-    .brand {
-      font-weight: 900;
-      letter-spacing: 0.2px;
-    }
-
+    .brand { font-weight: 900; letter-spacing: 0.2px; }
     .badge {
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.75);
-      color: #333;
-      white-space: nowrap;
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.75);
+      color: #333; white-space: nowrap; font-weight: 900;
     }
 
     nav a {
-      text-decoration: none;
-      display: inline-block;
-      margin-left: 8px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.72);
-      color: #222;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-decoration: none; display: inline-block; margin-left: 8px;
+      padding: 8px 10px; border-radius: 12px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.72); color: #222; font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
     nav a:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-      background: rgba(255, 255, 255, 0.90);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.90);
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 40px;
-      line-height: 1.15;
-    }
+    .hero { padding: 42px 0 10px; }
+    h1 { margin: 0 0 10px; font-size: 40px; line-height: 1.15; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 880px; }
 
-    .subtitle {
-      margin: 0;
-      max-width: 860px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 20px 0; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
 
     .card {
-      padding: 20px;
-      border-radius: 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      padding: 18px; border-radius: 20px;
+      background: var(--card); border: 1px solid var(--border);
+      box-shadow: var(--shadow); backdrop-filter: blur(10px);
     }
 
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 20px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .card ul {
-      margin: 10px 0 0 20px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    .card h2 { margin: 0 0 10px; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .card ul { margin: 10px 0 0 20px; color: var(--muted); line-height: 1.7; }
 
     .pill {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.80);
-      font-size: 12px;
-      font-weight: 800;
+      display: inline-block; margin-top: 10px; padding: 7px 12px;
+      border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.80); font-size: 12px; font-weight: 900;
     }
 
     .callout {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px; border-radius: 14px;
+      background: rgba(255,255,255,0.76); border: 1px solid var(--border);
+      margin-top: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    details {
       margin-top: 12px;
-      padding: 12px 14px;
       border-radius: 14px;
       border: 1px solid var(--border);
-      border-left: 4px solid rgba(69, 103, 243, 0.90);
-      background: rgba(255, 255, 255, 0.76);
+      background: rgba(255,255,255,0.70);
+      padding: 10px 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: #2b2b2b;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .details-body {
+      margin-top: 10px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 14px;
     }
 
-    footer {
-      padding: 26px 0 40px;
-      text-align: center;
-      color: #777;
-      font-size: 13px;
-    }
-
+    footer { padding: 26px 0 40px; text-align: center; color: #777; font-size: 13px; }
     .disclaimer {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(10px);
+      max-width: 860px; margin: 0 auto; padding: 14px 16px;
+      border-radius: 16px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(10px);
     }
   </style>
 </head>
@@ -241,11 +167,12 @@
           </nav>
         </div>
       </div>
+
       <section class="hero">
         <h1>Adult / Caregiver Overview</h1>
         <p class="subtitle">
-          This page explains what the grief-support chatbot is, how caregivers would set it up,
-          and the safety boundaries. It is meant to support conversations—not replace therapy or real support.
+          This project is a <strong>text-based grief-support chatbot</strong> concept for teens (13+).
+          It supports reflection and memory prompts with clear boundaries. <strong>No voice features.</strong>
         </p>
       </section>
     </header>
@@ -253,88 +180,75 @@
     <main class="wrap">
       <section class="grid">
         <div class="card">
-          <h2>What the chatbot is</h2>
-          <p>
-            A grief-support chatbot designed for teens (13+) to help with reflection, memory sharing,
-            and coping prompts—especially during a loved one’s serious illness (including hospice) and after loss.
-          </p>
-
+          <h2>At a glance</h2>
           <ul>
-            <li>Validates feelings without trying to “fix” grief</li>
-            <li>Encourages reflection and journaling-style prompts</li>
-            <li>Suggests outside support when needed</li>
+            <li><strong>What it is:</strong> structured text chat + prompts</li>
+            <li><strong>Who it’s for:</strong> teens (13+) experiencing grief</li>
+            <li><strong>What it’s not:</strong> therapy, medical advice, or a person</li>
           </ul>
-
-          <div class="pill">Support tool • Not licensed care</div>
+          <div class="pill">Text / Chat only</div>
         </div>
 
         <div class="card">
-          <h2>Quick caregiver comfort check</h2>
-
+          <h2>Caregiver comfort check</h2>
           <div class="callout">
-            Prompt: <em>“How would you feel if your child used a tool like this?”</em><br />
-            Many caregivers prefer trying it themselves first and setting limits.
+            Prompt: <em>“How would I feel if my teen used this?”</em><br />
+            Many caregivers prefer trying it first and setting boundaries.
           </div>
-
           <ul>
-            <li>Try it together first</li>
+            <li>Try together once</li>
             <li>Set time limits</li>
-            <li>Decide what topics/phrases to block</li>
+            <li>Encourage real support (trusted adult/counselor)</li>
           </ul>
         </div>
       </section>
 
       <section class="card">
-        <h2>How chats are structured (what to expect)</h2>
-
+        <h2>What the chat looks like</h2>
         <ul>
-          <li><strong>Step 1 — Check-in:</strong> mood + energy + “how hard is today?”</li>
-          <li><strong>Step 2 — Choice:</strong> reflect, remember, or ground (short coping exercise)</li>
-          <li><strong>Step 3 — Prompts:</strong> journaling-style questions; user can skip or stay quiet</li>
-          <li><strong>Step 4 — Wrap-up:</strong> summarize what helped + suggest a next step (drink water, text someone, take a break)</li>
-          <li><strong>Escalation:</strong> if someone seems unsafe or overwhelmed, it encourages reaching a trusted adult/professional</li>
+          <li><strong>Check-in:</strong> “How heavy is today (0–10)?”</li>
+          <li><strong>Choose:</strong> Reflect • Remember • Practical next step</li>
+          <li><strong>Prompts:</strong> short answers are OK; skipping is OK</li>
+          <li><strong>Wrap-up:</strong> summarize + suggest reaching out if needed</li>
         </ul>
 
-        <div class="callout">
-          Goal: clear structure + emotional safety + no pressure to talk before they’re ready.
-        </div>
+        <details>
+          <summary>See example prompts (optional)</summary>
+          <div class="details-body">
+            • “What’s the hardest part of today?”<br />
+            • “What do you wish people understood?”<br />
+            • “What’s one memory you don’t want to lose?”<br />
+            • “What would help in the next hour?”
+          </div>
+        </details>
       </section>
 
       <section class="card">
         <h2>Setup (conceptual)</h2>
         <ul>
-          <li><strong>1) Choose a mode:</strong> Teen (13+) language + boundaries</li>
-          <li><strong>2) Consent controls:</strong> caregiver approves features + saved content</li>
-          <li><strong>3) Customize limits:</strong> time limits, blocked topics/phrases, and “always encourage outside support” rules</li>
-          <li><strong>4) Privacy choices:</strong> minimize stored data; allow “no saving” mode</li>
+          <li><strong>Mode:</strong> Teen (13+) language + boundaries</li>
+          <li><strong>Controls:</strong> time limits + “take a break” reminders</li>
+          <li><strong>Privacy:</strong> minimize saved content (conceptual)</li>
+          <li><strong>Safety:</strong> encourages outside support if things feel unsafe</li>
         </ul>
+
+        <details>
+          <summary>Why we removed voice (survey-driven)</summary>
+          <div class="details-body">
+            Survey feedback raised concerns that voice imitation could feel “too real,” increase emotional dependence,
+            or blur boundaries. To prioritize clarity and safety, this prototype commits to <strong>text-only chat</strong>.
+          </div>
+        </details>
       </section>
 
       <section class="card">
-        <h2>About “voice replication” (we adjusted this)</h2>
-
-        <p>
-          Based on feedback, we do <strong>not</strong> frame this as “replicating” a loved one. Instead, the safer concept is
-          <strong>Voice Memories</strong>: caregiver-approved, pre-recorded clips (e.g., a bedtime message, encouragement, a story).
-        </p>
-
-        <div class="callout">
-          Why: users worried voice replication could feel too real, create over-reliance, or replace human connection.
-          Voice Memories keeps the comfort while avoiding “this is them” framing.
-        </div>
-
-        <div class="pill">Voice Memories • optional</div>
-      </section>
-
-      <section class="card">
-        <h2>Safety, ethics, and limitations</h2>
+        <h2>Safety + limitations</h2>
         <ul>
-          <li><strong>Not a professional:</strong> clearly states it is not licensed mental health care</li>
-          <li><strong>No harmful advice:</strong> avoids pushing disclosure or giving medical guidance</li>
-          <li><strong>Clarity of purpose:</strong> grief support + reflection; not “a friend replacement”</li>
-          <li><strong>Privacy-first:</strong> minimal data, caregiver controls, and clear explanation of what’s saved</li>
-          <li><strong>Outside support:</strong> encourages therapy/real help when grief is severe or risks are present</li>
+          <li><strong>Not professional care:</strong> clearly stated</li>
+          <li><strong>No replacement:</strong> encourages human support</li>
+          <li><strong>Crisis:</strong> directs users to trusted adults/emergency services</li>
         </ul>
+        <div class="pill">Ethics-first messaging</div>
       </section>
 
       <footer>

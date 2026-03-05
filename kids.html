@@ -29,31 +29,17 @@
         linear-gradient(135deg, #fff7fb, #ffffff);
     }
 
-    .page {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 700ms ease forwards;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .page { opacity: 0; transform: translateY(10px); animation: fadeUp 700ms ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
     .blob {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      filter: blur(30px);
-      opacity: 0.55;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; width: 420px; height: 420px; border-radius: 999px;
+      filter: blur(30px); opacity: 0.55; z-index: -1; pointer-events: none;
       animation: floaty 16s ease-in-out infinite;
     }
 
     .blob.one {
-      top: -140px;
-      right: -170px;
+      top: -140px; right: -170px;
       background:
         radial-gradient(circle at 30% 30%, #ff7bbd, transparent 60%),
         radial-gradient(circle at 70% 70%, #ffd1ea, transparent 55%);
@@ -61,8 +47,7 @@
     }
 
     .blob.two {
-      bottom: -190px;
-      left: -170px;
+      bottom: -190px; left: -170px;
       background:
         radial-gradient(circle at 30% 30%, #78f0c4, transparent 60%),
         radial-gradient(circle at 70% 70%, #d3fff1, transparent 55%);
@@ -74,18 +59,10 @@
       50% { transform: translate(-18px, -22px) scale(1.05); }
     }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 18px;
-    }
-
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
     header { padding: 24px 0 0; }
 
-    .hero {
-      padding: 36px 0 8px;
-      text-align: center;
-    }
+    .hero { padding: 36px 0 8px; text-align: center; }
 
     .grid {
       display: grid;
@@ -99,30 +76,21 @@
     }
 
     .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 18px;
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 18px;
       background: rgba(255, 255, 255, 0.60);
       border: 1px solid var(--border);
       backdrop-filter: blur(10px);
     }
 
-    .brand {
-      font-weight: 900;
-      letter-spacing: 0.2px;
-    }
+    .brand { font-weight: 900; letter-spacing: 0.2px; }
 
     .badge {
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.75);
-      color: #333;
-      white-space: nowrap;
+      color: #333; white-space: nowrap;
+      font-weight: 900;
     }
 
     nav a {
@@ -134,7 +102,7 @@
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.75);
       color: #222;
-      font-weight: 700;
+      font-weight: 800;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
@@ -144,11 +112,7 @@
       background: rgba(255, 255, 255, 0.90);
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 38px;
-      line-height: 1.15;
-    }
+    h1 { margin: 0 0 10px; font-size: 38px; line-height: 1.15; }
 
     .subtitle {
       margin: 0 auto;
@@ -167,10 +131,7 @@
       backdrop-filter: blur(10px);
     }
 
-    .card h2 {
-      margin: 0 0 8px;
-      font-size: 20px;
-    }
+    .card h2 { margin: 0 0 8px; font-size: 20px; }
 
     .card p {
       margin: 0;
@@ -252,8 +213,6 @@
       font-size: 15px;
     }
 
-    .action-box strong { color: #222; }
-
     .copy {
       margin-top: 8px;
       padding: 10px 12px;
@@ -266,6 +225,16 @@
       user-select: text;
       word-break: break-word;
     }
+
+    .graphic {
+      margin-top: 12px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.70);
+      overflow: hidden;
+    }
+
+    .graphic .inner { padding: 14px; }
 
     footer {
       padding: 26px 0 40px;
@@ -307,8 +276,9 @@
       <section class="hero">
         <h1>A place to slow down.</h1>
         <p class="subtitle">
-          This is a concept for a grief-support AI tool. It can help you reflect, name what you’re feeling,
-          and hold onto memories. You can skip anything. Silence is allowed.
+          This is a concept for a grief-support <strong>text chat</strong> tool.
+          You can answer in one sentence, or skip. Silence is allowed.
+          <strong>No voice features.</strong>
         </p>
       </section>
     </header>
@@ -317,25 +287,51 @@
       <section class="card">
         <h2>Purpose of the bot</h2>
         <p>
-          This bot is meant to help you process grief in a low-pressure way—by giving you structure when your brain feels messy.
+          This bot helps you process grief with low pressure. It gives structure when your thoughts feel messy.
           It’s not here to “fix you.” It’s here to help you get through moments.
         </p>
 
         <div class="purpose-grid">
           <div class="purpose-box">
             <strong>What it can do</strong><br />
-            • Offer journaling-style prompts<br />
-            • Help you name feelings<br />
+            • Offer text prompts<br />
+            • Help name feelings<br />
             • Support memory sharing<br />
-            • Suggest small next steps
+            • Suggest practical next steps
           </div>
 
           <div class="purpose-box">
             <strong>What it can’t do</strong><br />
             • Replace a real person<br />
             • Provide therapy/medical advice<br />
-            • Tell you what someone “would say”<br />
-            • Make grief go away
+            • Speak as a loved one<br />
+            • Make grief disappear
+          </div>
+        </div>
+
+        <div class="graphic" aria-label="Chat mockup graphic">
+          <div class="inner">
+            <svg viewBox="0 0 920 210" width="100%" height="auto" role="img" aria-label="Teen chat example">
+              <rect x="10" y="10" width="900" height="190" rx="22" fill="rgba(255,255,255,0.55)" stroke="rgba(0,0,0,0.10)"/>
+              <text x="36" y="42" font-family="Segoe UI, Arial" font-size="14" fill="#232323" font-weight="700">
+                Example (Text Chat)
+              </text>
+
+              <rect x="36" y="60" width="520" height="36" rx="14" fill="rgba(69,103,243,0.12)" stroke="rgba(69,103,243,0.18)"/>
+              <text x="54" y="83" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                Want a short prompt, or do you want space today?
+              </text>
+
+              <rect x="360" y="108" width="520" height="36" rx="14" fill="rgba(255,105,183,0.12)" stroke="rgba(255,105,183,0.18)"/>
+              <text x="378" y="131" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                Short prompt. I can only do a sentence.
+              </text>
+
+              <rect x="36" y="156" width="620" height="36" rx="14" fill="rgba(120,240,196,0.16)" stroke="rgba(120,240,196,0.18)"/>
+              <text x="54" y="179" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                One sentence: “Right now, the hardest part is ___.”
+              </text>
+            </svg>
           </div>
         </div>
 
@@ -344,14 +340,13 @@
           or contact local emergency services.
         </div>
 
-        <span class="chip">Support • Not therapy</span>
+        <span class="chip">Text / Chat only</span>
       </section>
-
       <section class="grid">
         <div class="card">
           <h2>What it is</h2>
           <p>
-            A voice-based AI helper that asks gentle questions and offers reflection prompts.
+            A text-based AI helper that asks gentle questions and offers reflection prompts.
             It’s not a real person and not a therapist.
           </p>
           <span class="chip">Support tool</span>
@@ -363,14 +358,14 @@
             <li>You can skip questions</li>
             <li>You can stop anytime</li>
             <li>You don’t have to share everything</li>
-            <li>If you feel overwhelmed, take a break and reach out to someone you trust</li>
+            <li>If it’s too much, take a break and reach out to someone you trust</li>
           </ul>
           <span class="chip">You choose</span>
         </div>
       </section>
 
       <section class="card">
-        <h2>Reflection prompts (more like journaling)</h2>
+        <h2>Reflection prompts (short answers count)</h2>
         <ul>
           <li>What part of today felt the hardest?</li>
           <li>What do you wish people understood about your grief?</li>
@@ -401,15 +396,14 @@
 
         <div class="actions">
           <div class="action-box">
-            <strong>Option A — “Say it out loud” (1 sentence)</strong><br />
-            Finish this: <em>“Right now, the hardest part is…”</em><br />
-            That’s it. One sentence counts.
+            <strong>Option A — One sentence</strong><br />
+            Finish: <em>“Right now, the hardest part is…”</em>
           </div>
 
           <div class="action-box">
             <strong>Option B — Text someone (copy/paste)</strong>
             <div class="copy">
-              Hey, I’m having a hard time. I don’t really need advice — can you just stay with me / talk for a bit?
+              Hey, I’m having a hard time. I don’t need advice — can you just stay with me / talk for a bit?
             </div>
           </div>
 
@@ -422,17 +416,17 @@
 
           <div class="action-box">
             <strong>Option D — Save one memory</strong><br />
-            Save something small: a photo, a note, a voice message, or 3 sentences about a moment you don’t want to forget.
+            Save a photo, note, or 3 sentences about a moment you don’t want to forget.
           </div>
 
           <div class="action-box">
             <strong>Option E — “What would I tell a friend?”</strong><br />
-            Imagine your friend is feeling exactly what you feel. Write one kind sentence you’d tell them — then read it back to yourself.
+            Write one kind sentence you’d tell a friend feeling this—then read it back to yourself.
           </div>
 
           <div class="action-box">
             <strong>Option F — Get real support</strong><br />
-            If it feels too heavy: talk to a trusted adult, counselor, or someone who can actually show up for you.
+            Talk to a trusted adult, counselor, or someone who can actually show up for you.
           </div>
         </div>
 

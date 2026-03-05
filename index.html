@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voice for Healing • AI Grief Support</title>
+  <title>Voice for Healing • Text-Based Grief Support</title>
 
   <style>
     :root {
@@ -133,37 +133,50 @@
       letter-spacing: 0.2px;
     }
 
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .badge {
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.70);
       color: #333;
       white-space: nowrap;
     }
 
+    .badge.strong {
+      font-weight: 900;
+      background: rgba(255, 255, 255, 0.86);
+    }
+
     .hero {
       text-align: center;
-      padding: 70px 0 22px;
+      padding: 62px 0 14px;
     }
 
     .hero h1 {
       font-size: 48px;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       line-height: 1.1;
     }
 
     .subtitle {
       font-size: 18px;
       color: var(--muted);
-      max-width: 780px;
+      max-width: 820px;
       margin: 0 auto;
       line-height: 1.7;
     }
 
     .cta-row {
-      margin-top: 26px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -178,7 +191,7 @@
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.70);
       color: #222;
-      font-weight: 600;
+      font-weight: 700;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
@@ -186,6 +199,27 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
       background: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-graphic {
+      margin: 20px auto 0;
+      max-width: 860px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-graphic .inner {
+      padding: 16px;
+    }
+
+    .hero-graphic small {
+      display: inline-block;
+      margin-top: 10px;
+      color: #666;
+      line-height: 1.5;
     }
 
     .features {
@@ -316,7 +350,37 @@
       background: rgba(255, 255, 255, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.35);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 900px) {
+      .comparison { grid-template-columns: 1fr 1fr; }
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .mini-card ul {
+      margin: 8px 0 0 20px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
     }
 
     .team-grid {
@@ -370,7 +434,7 @@
 
     .role {
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--muted);
       margin-bottom: 8px;
     }
@@ -410,7 +474,10 @@
     <header class="wrap">
       <div class="topbar">
         <div class="brand">Voice for Healing</div>
-        <div class="badge">Sponsor: Dr. Young • Class Project</div>
+        <div class="badge-row">
+          <div class="badge strong">Text / Chat Focused</div>
+          <div class="badge">Sponsor: Dr. Young • Class Project</div>
+        </div>
       </div>
     </header>
 
@@ -418,23 +485,70 @@
       <section class="hero">
         <h1>Support that doesn’t rush grief.</h1>
         <p class="subtitle">
-          A concept landing page for an <strong>AI grief-support chatbot</strong> designed to help teens (13+) process grief
-          with gentle prompts, memory sharing, and clear ethical boundaries.
+          A concept landing page for an <strong>AI text-based grief support chatbot</strong> designed to help teens (13+)
+          process grief through structured conversation, memory prompts, and practical next steps.
+          <strong>This project is not voice-based.</strong>
         </p>
 
         <div class="cta-row">
           <a class="btn" href="#choose">Choose a version</a>
-          <a class="btn" href="#why">Why this matters</a>
+          <a class="btn" href="#how">How it works</a>
           <a class="btn" href="#team">Meet the team</a>
+        </div>
+
+        <div class="hero-graphic" aria-label="Chat mockup graphic">
+          <div class="inner">
+            <svg viewBox="0 0 920 250" width="100%" height="auto" role="img" aria-label="Text chat mockup">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#7aa6ff" stop-opacity="0.75"/>
+                  <stop offset="1" stop-color="#ff9ad5" stop-opacity="0.75"/>
+                </linearGradient>
+                <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="10" stdDeviation="10" flood-opacity="0.15"/>
+                </filter>
+              </defs>
+
+              <rect x="20" y="15" width="880" height="220" rx="28" fill="rgba(255,255,255,0.7)" stroke="rgba(0,0,0,0.10)"/>
+              <rect x="50" y="45" width="820" height="165" rx="18" fill="rgba(255,255,255,0.65)" stroke="rgba(0,0,0,0.08)"/>
+
+              <rect x="50" y="45" width="820" height="38" rx="18" fill="url(#g1)" filter="url(#s)"/>
+              <text x="80" y="70" font-family="Segoe UI, Arial" font-size="14" fill="#fff" font-weight="700">
+                Voice for Healing • Text Chat
+              </text>
+              <text x="810" y="70" font-family="Segoe UI, Arial" font-size="12" fill="#fff" opacity="0.9">
+                13+
+              </text>
+
+              <rect x="80" y="98" width="470" height="34" rx="14" fill="rgba(69,103,243,0.12)" stroke="rgba(69,103,243,0.18)"/>
+              <text x="98" y="120" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                Check-in: How heavy does today feel (0–10)?
+              </text>
+
+              <rect x="360" y="142" width="480" height="34" rx="14" fill="rgba(255,105,183,0.12)" stroke="rgba(255,105,183,0.18)"/>
+              <text x="378" y="164" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                It’s like a 7. I don’t want advice, just help organizing my thoughts.
+              </text>
+
+              <rect x="80" y="186" width="520" height="34" rx="14" fill="rgba(120,240,196,0.16)" stroke="rgba(120,240,196,0.18)"/>
+              <text x="98" y="208" font-family="Segoe UI, Arial" font-size="13" fill="#2f2f2f">
+                Choose one: Reflect • Remember • Practical next step
+              </text>
+            </svg>
+
+            <small>
+              <strong>Text-first by design:</strong> prompts are written, skippable, and paced by the user. No voice imitation or voice output.
+            </small>
+          </div>
         </div>
       </section>
 
       <section id="why" class="section">
         <h2>Why this matters</h2>
         <p>
-          People told us they want clearer structure, clearer boundaries, and language that validates grief
-          without trying to “fix it.” They also want reassurance about emotional safety, privacy, and when
-          the tool encourages outside support.
+          Survey feedback emphasized a need for clear structure, clear boundaries, and language that validates grief
+          without trying to “fix it.” Users also wanted transparency about emotional safety, privacy, and when the tool
+          encourages outside support.
         </p>
 
         <div class="features">
@@ -445,16 +559,62 @@
           </div>
 
           <div class="feature">
-            <div class="icon">📝</div>
-            <h3>Journaling prompts</h3>
-            <p>Relatable reflection prompts (not just “do breathing”) especially for teens.</p>
+            <div class="icon">🧩</div>
+            <h3>Teen-real prompts</h3>
+            <p>Practical text prompts (scripts, choices, short answers) instead of generic exercises.</p>
           </div>
 
           <div class="feature">
             <div class="icon">🔒</div>
             <h3>Boundaries & safety</h3>
-            <p>Not a licensed professional; no harmful advice; privacy- and consent-aware.</p>
+            <p>Not licensed care; not a replacement for people; encourages trusted support when needed.</p>
           </div>
+        </div>
+      </section>
+
+      <section id="how" class="section">
+        <h2>How it works</h2>
+        <p>
+          The experience is a short, structured <strong>text conversation</strong>: check-in → choose a path → respond (or skip) → wrap-up.
+          The tool is designed to reduce pressure and avoid over-reliance.
+        </p>
+
+        <div class="quote-box" style="margin-top:14px;">
+          <div class="quote-mark">📌</div>
+          <p class="quote-text">
+            <strong>Text / chat only:</strong> This prototype intentionally avoids voice features to reduce confusion and ethical risk.
+          </p>
+        </div>
+
+        <div style="margin-top:16px; border-radius:18px; overflow:hidden; border:1px solid var(--border); background:rgba(255,255,255,0.72);">
+          <svg viewBox="0 0 920 190" width="100%" height="auto" role="img" aria-label="Flow diagram">
+            <defs>
+              <linearGradient id="flowg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#4567f3" stop-opacity="0.25"/>
+                <stop offset="1" stop-color="#ff69b7" stop-opacity="0.25"/>
+              </linearGradient>
+            </defs>
+            <rect x="10" y="12" width="900" height="166" rx="22" fill="rgba(255,255,255,0.55)"/>
+            <rect x="40" y="55" width="170" height="80" rx="18" fill="url(#flowg)" stroke="rgba(0,0,0,0.12)"/>
+            <text x="70" y="95" font-family="Segoe UI, Arial" font-size="14" fill="#232323" font-weight="700">Check-in</text>
+            <text x="70" y="115" font-family="Segoe UI, Arial" font-size="12" fill="#444">0–10 + “today”</text>
+
+            <rect x="260" y="55" width="170" height="80" rx="18" fill="url(#flowg)" stroke="rgba(0,0,0,0.12)"/>
+            <text x="285" y="95" font-family="Segoe UI, Arial" font-size="14" fill="#232323" font-weight="700">Choose</text>
+            <text x="285" y="115" font-family="Segoe UI, Arial" font-size="12" fill="#444">Reflect / Remember</text>
+
+            <rect x="480" y="55" width="170" height="80" rx="18" fill="url(#flowg)" stroke="rgba(0,0,0,0.12)"/>
+            <text x="505" y="95" font-family="Segoe UI, Arial" font-size="14" fill="#232323" font-weight="700">Respond</text>
+            <text x="505" y="115" font-family="Segoe UI, Arial" font-size="12" fill="#444">short answers OK</text>
+
+            <rect x="700" y="55" width="170" height="80" rx="18" fill="url(#flowg)" stroke="rgba(0,0,0,0.12)"/>
+            <text x="725" y="95" font-family="Segoe UI, Arial" font-size="14" fill="#232323" font-weight="700">Wrap-up</text>
+            <text x="725" y="115" font-family="Segoe UI, Arial" font-size="12" fill="#444">next step / support</text>
+
+            <path d="M215 95 L255 95" stroke="rgba(0,0,0,0.25)" stroke-width="3" />
+            <path d="M435 95 L475 95" stroke="rgba(0,0,0,0.25)" stroke-width="3" />
+            <path d="M655 95 L695 95" stroke="rgba(0,0,0,0.25)" stroke-width="3" />
+          </svg>
         </div>
       </section>
 
@@ -463,8 +623,8 @@
         <div class="quote-box">
           <div class="quote-mark">“</div>
           <p class="quote-text">
-            I’d use a grief-support chatbot if it gently validated feelings, didn’t push me to talk before I’m ready,
-            and stayed clear about what it can’t do."
+            I’d use a grief-support chatbot if it validated feelings, didn’t push me to talk before I’m ready,
+            and stayed clear about what it can’t do.
           </p>
           <div class="quote-meta">— Anon</div>
         </div>
@@ -473,15 +633,15 @@
       <section id="choose" class="section">
         <h2>Choose your version</h2>
         <p>
-          Adult view includes: setup, consent controls, boundaries, and safety/limitations.
-          Teen view (13+) includes: what it is, how it helps, and supportive prompts (no setup details).
+          Adult view includes: setup, consent controls, boundaries, and limitations.
+          Teen view (13+) focuses on purpose, control, and supportive text prompts (no setup details).
         </p>
 
         <div class="versions">
           <a class="version-card adult" href="adult.html">
             <div>
               <h3>Adult / Caregiver View</h3>
-              <p>What it is + how to set it up + consent/controls + safety/limitations.</p>
+              <p>Quick overview + consent/controls + boundaries/limitations. (Less wordy.)</p>
             </div>
             <div class="chip">Setup • Consent • Safety</div>
           </a>
@@ -489,7 +649,7 @@
           <a class="version-card teen" href="kids.html">
             <div>
               <h3>Teen View (13+)</h3>
-              <p>What it is + how it helps + reflection and memory prompts (no setup details).</p>
+              <p>Purpose + what you control + practical prompts and scripts. Text-only.</p>
             </div>
             <div class="chip">Explain • Reflect • Remember</div>
           </a>
@@ -499,37 +659,36 @@
       <section id="team" class="section">
         <h2>Meet the Team</h2>
         <p>
-          This project was developed by a multidisciplinary team exploring the intersection
-          of AI, grief support, and ethical design.
+          This project was developed by a multidisciplinary team exploring AI, grief support, and ethical design.
         </p>
 
         <div class="team-grid">
           <div class="team-card">
-            <div class="avatar">AR</div>
-            <h3>Amrin Rahman</h3>
-            <div class="role">Team Lead</div>
-            <p>Guides overall strategy, coordinates roles, and ensures alignment with project goals.</p>
+            <div class="avatar">TL</div>
+            <h3>Team Lead</h3>
+            <div class="role">Strategy • Coordination</div>
+            <p>Guided project direction and ensured alignment with goals and requirements.</p>
           </div>
 
           <div class="team-card">
-            <div class="avatar">SS</div>
-            <h3>Sanaa Sharda</h3>
-            <div class="role">UX Lead</div>
-            <p>Shapes the interface and interaction flow to support clarity and emotional safety.</p>
+            <div class="avatar">UX</div>
+            <h3>UX Lead</h3>
+            <div class="role">Flow • Accessibility</div>
+            <p>Designed the user experience for Adult and Teen versions with emotional safety.</p>
           </div>
 
           <div class="team-card">
-            <div class="avatar">KB</div>
-            <h3>Karabelo Bowsky</h3>
-            <div class="role">Research Lead</div>
-            <p>Analyzes user feedback and academic research to inform design choices.</p>
+            <div class="avatar">RS</div>
+            <h3>Research Lead</h3>
+            <div class="role">Surveys • Insights</div>
+            <p>Analyzed survey feedback to drive changes from V1 to V2.</p>
           </div>
 
           <div class="team-card">
-            <div class="avatar">VF</div>
-            <h3>Victoria Flores</h3>
-            <div class="role">Coding Lead</div>
-            <p>Builds and structures the website, translating design into functional code.</p>
+            <div class="avatar">CD</div>
+            <h3>Coding Lead</h3>
+            <div class="role">Implementation</div>
+            <p>Built and organized the prototype pages for GitHub Pages deployment.</p>
           </div>
         </div>
       </section>
