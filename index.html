@@ -324,6 +324,62 @@
       color: #666;
     }
 
+    .prototype-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    @media (min-width: 860px) {
+      .prototype-grid {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+    }
+
+    .prototype-image-wrap {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.72);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .prototype-image-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 760px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 16px;
+    }
+
+    .prototype-points {
+      display: grid;
+      gap: 12px;
+    }
+
+    .prototype-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .prototype-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .prototype-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .versions {
       display: grid;
       grid-template-columns: 1fr;
@@ -517,6 +573,7 @@
         <div class="cta-row">
           <a class="btn" href="#choose">Choose a version</a>
           <a class="btn" href="#how">How it works</a>
+          <a class="btn" href="#prototype">Prototype preview</a>
           <a class="btn" href="#team">Meet the team</a>
         </div>
 
@@ -566,6 +623,51 @@
           <p class="quote-text">
             <strong>Text / chat only:</strong> This prototype intentionally avoids voice features to reduce confusion and ethical risk.
           </p>
+        </div>
+      </section>
+
+      <section id="prototype" class="section">
+        <h2>Prototype Preview</h2>
+        <p>
+          This mockup shows the kind of text conversation a user can have with the bot. The tone is designed to feel calm,
+          supportive, and low-pressure.
+        </p>
+
+        <div class="prototype-grid">
+          <div class="prototype-image-wrap">
+            <img src="chat-example.png" alt="Example text chat with the grief support chatbot" />
+          </div>
+
+          <div class="prototype-points">
+            <div class="prototype-card">
+              <h3>1. Gentle introduction</h3>
+              <p>
+                The chatbot introduces itself clearly and begins with a simple emotional check-in.
+              </p>
+            </div>
+
+            <div class="prototype-card">
+              <h3>2. User-led pacing</h3>
+              <p>
+                The user can answer briefly, skip, or choose how much they want to share.
+              </p>
+            </div>
+
+            <div class="prototype-card">
+              <h3>3. Guided choices</h3>
+              <p>
+                The bot offers clear paths such as <strong>Reflect</strong>, <strong>Remember</strong>, or
+                <strong>Practical next step</strong>.
+              </p>
+            </div>
+
+            <div class="prototype-card">
+              <h3>4. Support without pressure</h3>
+              <p>
+                The experience is designed to validate feelings without forcing disclosure or pretending to replace real people.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -623,7 +725,7 @@
 
           <div class="team-card">
             <div class="avatar">SS</div>
-            <h3>Sara Sharda</h3>
+            <h3>Sanaa Sharda</h3>
             <div class="role">UX Lead</div>
             <p>Designs the user experience with clarity, accessibility, and emotional safety in mind.</p>
           </div>
