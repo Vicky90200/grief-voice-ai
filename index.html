@@ -18,7 +18,9 @@
       --radius-md: 16px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -31,7 +33,9 @@
         linear-gradient(135deg, #f8fbff, #fff4f9);
     }
 
-    a { color: inherit; }
+    a {
+      color: inherit;
+    }
 
     .page {
       opacity: 0;
@@ -40,7 +44,10 @@
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .blob {
@@ -83,8 +90,13 @@
     }
 
     @keyframes floaty {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(25px, -20px) scale(1.05); }
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(25px, -20px) scale(1.05);
+      }
     }
 
     .wrap {
@@ -93,7 +105,9 @@
       padding: 0 20px;
     }
 
-    header { padding: 28px 0 0; }
+    header {
+      padding: 28px 0 0;
+    }
 
     .section {
       margin: 22px 0;
@@ -175,8 +189,7 @@
       justify-content: center;
       padding: 12px;
       border-radius: 22px;
-      background:
-        linear-gradient(135deg, rgba(248, 251, 255, 0.85), rgba(255, 244, 249, 0.82));
+      background: linear-gradient(135deg, rgba(248, 251, 255, 0.85), rgba(255, 244, 249, 0.82));
       border: 1px solid rgba(0, 0, 0, 0.06);
       overflow: hidden;
     }
@@ -259,7 +272,9 @@
     }
 
     @media (min-width: 760px) {
-      .features { grid-template-columns: 1fr 1fr 1fr; }
+      .features {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
 
     .feature {
@@ -388,7 +403,9 @@
     }
 
     @media (min-width: 760px) {
-      .versions { grid-template-columns: 1fr 1fr; }
+      .versions {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .version-card {
@@ -448,11 +465,15 @@
     }
 
     @media (min-width: 760px) {
-      .team-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (min-width: 1100px) {
-      .team-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+      .team-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
     }
 
     .team-card {
@@ -501,6 +522,70 @@
       color: var(--muted);
       line-height: 1.6;
       margin: 0;
+    }
+
+    .signup-form {
+      margin-top: 16px;
+    }
+
+    .signup-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .signup-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 760px) {
+      .signup-row {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .signup-input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 16px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .signup-input:focus {
+      border-color: rgba(69, 103, 243, 0.45);
+      box-shadow: 0 0 0 4px rgba(69, 103, 243, 0.08);
+    }
+
+    .signup-button {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #4567f3, #7a95ff);
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .signup-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(69, 103, 243, 0.22);
+    }
+
+    .signup-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
     }
 
     footer {
@@ -618,7 +703,7 @@
           The tool is designed to reduce pressure and avoid over-reliance.
         </p>
 
-        <div class="quote-box" style="margin-top:14px;">
+        <div class="quote-box" style="margin-top: 14px;">
           <div class="quote-mark">📌</div>
           <p class="quote-text">
             <strong>Text / chat only:</strong> This prototype intentionally avoids voice features to reduce confusion and ethical risk.
@@ -706,6 +791,40 @@
             </div>
             <div class="chip">Explain • Reflect • Remember</div>
           </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Stay Updated</h2>
+        <p>
+          Interested in this project? Enter your email below and send us a message.
+        </p>
+
+        <form
+          class="signup-form"
+          action="mailto:yourteamemail@example.com"
+          method="post"
+          enctype="text/plain"
+        >
+          <label for="email" class="signup-label">Email address</label>
+
+          <div class="signup-row">
+            <input
+              type="email"
+              id="email"
+              name="Email"
+              class="signup-input"
+              placeholder="you@example.com"
+              required
+            />
+            <button class="signup-button" type="submit">
+              I'm Interested
+            </button>
+          </div>
+        </form>
+
+        <div class="signup-note">
+          This opens the user's email app so they can send their interest.
         </div>
       </section>
 
